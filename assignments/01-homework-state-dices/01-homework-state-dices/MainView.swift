@@ -24,23 +24,25 @@ struct MainView: View {
             }
             
             HStack {
-                Button("Remove Dice") {
+                Button("Remove Dice", systemImage: "minus.circle.fill") {
                     withAnimation {
                         numberOfDice -= 1
                     }
                 }
-                .buttonStyle(.bordered)
+                // disabled gjør knappen avslått når true (som en if-setning)
                 .disabled(numberOfDice == 1)
                 
-                Button("Add Dice") {
+                Button("Add Dice", systemImage: "plus.circle.fill") {
                     withAnimation {
                         numberOfDice += 1
                     }
                 }
-                .buttonStyle(.bordered)
                 .disabled(numberOfDice == 5)
             }
             .padding()
+            // labelStyle med iconOnly sørger for at teksten til knappen ikke vises, men fremdeles er tilgjengelig for VoiceOver for synshemmede
+            .labelStyle(.iconOnly)
+            .font(.title)
         }
         .padding()
     }
