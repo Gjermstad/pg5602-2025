@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct DIceView: View {
+struct DiceView: View {
     @State private var numberOfPips: Int = 1
     
     var body: some View {
@@ -27,5 +27,5 @@ struct DIceView: View {
 }
 
 #Preview {
-    DIceView()
+    DiceView()
 }

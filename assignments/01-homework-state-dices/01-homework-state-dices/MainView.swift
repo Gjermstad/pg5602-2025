@@ -8,12 +8,39 @@
 import SwiftUI
 
 struct MainView: View {
+    @State private var numberOfDice: Int = 3
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            Text("Dice Roller")
+                .font(.largeTitle
+                    .lowercaseSmallCaps()
+                    .bold())
+            
+            HStack {
+                ForEach(1...numberOfDice, id: \.description) {_ in
+                    DiceView()
+                }
+            }
+            
+            HStack {
+                Button("Remove Dice") {
+                    withAnimation {
+                        numberOfDice -= 1
+                    }
+                }
+                .buttonStyle(.bordered)
+                .disabled(numberOfDice == 1)
+                
+                Button("Add Dice") {
+                    withAnimation {
+                        numberOfDice += 1
+                    }
+                }
+                .buttonStyle(.bordered)
+                .disabled(numberOfDice == 3)
+            }
+            .padding()
         }
         .padding()
     }
