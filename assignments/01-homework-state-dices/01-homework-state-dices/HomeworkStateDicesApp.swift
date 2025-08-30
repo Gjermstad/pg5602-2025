@@ -11,7 +11,7 @@ import SwiftUI
 struct HomeworkStateDicesApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainView()
         }
     }
 }
