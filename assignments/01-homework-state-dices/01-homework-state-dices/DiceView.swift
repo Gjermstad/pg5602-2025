@@ -13,8 +13,12 @@ struct DiceView: View {
     var body: some View {
         VStack {
             Image(systemName: "die.face.\(numberOfPips)")
+                // resizable er nødvendig for å kunne endre på størrelsen på terningene
                 .resizable()
-                .frame(width: 100, height: 100)
+                // frame setter maks størrelse på terningene
+                .frame(maxWidth: 100, maxHeight: 100)
+                // aspectRatio 1 gir 1:1, og sammen med .fit må terningen forminskes om nødvendig
+                .aspectRatio(1, contentMode: .fit)
             
             Button("Roll") {
                 withAnimation {

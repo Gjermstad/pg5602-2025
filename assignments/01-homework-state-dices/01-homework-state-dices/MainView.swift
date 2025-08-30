@@ -38,7 +38,7 @@ struct MainView: View {
                     }
                 }
                 .buttonStyle(.bordered)
-                .disabled(numberOfDice == 3)
+                .disabled(numberOfDice == 5)
             }
             .padding()
         }
