@@ -56,3 +56,13 @@ git tag l03-end
 git push && git push --tags
 ```
 
+---
+
+## Viktige notater om Git
+
+- **Package.resolved**: Denne skal *alltid* være med i Git. Den låser avhengighetene dine slik at alle bygger prosjektet med samme versjoner.  
+- **Pods/**: Som standard har jeg lagt den i `.gitignore` (så du installerer avhengigheter med `pod install` lokalt). Hvis du en dag jobber i et team eller leverer prosjekt der sensor ikke kjører `pod install`, kan du fjerne `Pods/` fra `.gitignore` og commite hele mappen.
+
+Kort sagt:
+- `Package.resolved` → commit ✅  
+- `Pods/` → ignorér som student, men commit hvis sensor/prosjekt krever det.
