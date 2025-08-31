@@ -21,7 +21,7 @@ struct MainView: View {
             
             HStack {
                 ForEach(1...numberOfDice, id: \.description) {_ in
-                    DiceView()
+                    DiceExtendedView()
                 }
             }
             
@@ -45,6 +45,7 @@ struct MainView: View {
             // labelStyle med iconOnly sørger for at teksten til knappen ikke vises, men fremdeles er tilgjengelig for VoiceOver for synshemmede
             .labelStyle(.iconOnly)
             .font(.title)
+            .symbolRenderingMode(.multicolor)
         }
         .padding()
         // .infinity setter fargen til å strekke seg over hele skjermen så langt den kan når sammen med maxWidth og maxHeight
