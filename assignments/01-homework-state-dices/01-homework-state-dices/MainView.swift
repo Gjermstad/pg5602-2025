@@ -16,6 +16,8 @@ struct MainView: View {
                 .font(.largeTitle
                     .lowercaseSmallCaps()
                     .bold())
+                // Setter tekstfargen til hvit på overskriften
+                .foregroundStyle(.white)
             
             HStack {
                 ForEach(1...numberOfDice, id: \.description) {_ in
@@ -45,6 +47,12 @@ struct MainView: View {
             .font(.title)
         }
         .padding()
+        // .infinity setter fargen til å strekke seg over hele skjermen så langt den kan når sammen med maxWidth og maxHeight
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        // henter fargen valgt i Assets
+        .background(.appBackground)
+        // setter tint farge som kan brukes som kontrastfarge mot .background
+        .tint(.white)
     }
 }
 
