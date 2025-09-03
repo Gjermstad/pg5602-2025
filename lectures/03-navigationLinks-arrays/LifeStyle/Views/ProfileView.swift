@@ -11,7 +11,7 @@ struct ProfileView: View
 {
     var body: some View
     {
-        EmptyView(title: "profil", text: "Vennligst opprett en ny profil")
+        EmptyView(title: "profil", notes: "Vennligst opprett en ny profil")
     }
 }
 

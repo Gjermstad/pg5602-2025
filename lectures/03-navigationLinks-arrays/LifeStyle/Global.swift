@@ -10,4 +10,7 @@ import Foundation
 // let = konstant / var = variabel
 let about: String = "abc"
 
+let emojis: [String] = ["🍏","🍎","🍐","🍊","🍋","🍋‍🟩","🍌","🍉","🍊","🥦"]
+
 var tall: Int16 = 123
+
