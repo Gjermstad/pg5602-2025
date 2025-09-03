@@ -58,7 +58,7 @@ struct MainView: View
                Menu
                {
                   // Hver NavigationLink lager et valg/knapp i Drawer menyen
-                  NavigationLink(destination: ProfileView())
+                  NavigationLink(destination: ExerciseView())
                   {
                      Label("🏋️‍♀️ Trening", systemImage: "figure.walk")
                   }
