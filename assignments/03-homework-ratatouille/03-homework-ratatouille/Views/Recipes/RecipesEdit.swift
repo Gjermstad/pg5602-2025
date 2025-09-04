@@ -16,6 +16,7 @@ struct RecipesEdit: View {
   {
     NavigationStack
     {
+      // Vises om man trykker Rediger
       if isEditing
       {
         Text("Rediger oppskrift")
@@ -38,6 +39,8 @@ struct RecipesEdit: View {
           }
         }
       }
+      
+      // Vises når man trykker inn på en oppskrift
       else
       {
         Form
