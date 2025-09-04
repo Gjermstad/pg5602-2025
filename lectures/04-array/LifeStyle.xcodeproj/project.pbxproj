@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		9FFD46DA2E603BBC009E550F /* LifeStyle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LifeStyle.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5341B7AF2E603BB2003B8487 /* LifeStyle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LifeStyle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		9FFD46DC2E603BBC009E550F /* LifeStyle */ = {
+		5341B7B12E603BB2003B8487 /* LifeStyle */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = LifeStyle;
 			sourceTree = "<group>";
@@ -19,7 +19,7 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		9FFD46D72E603BBC009E550F /* Frameworks */ = {
+		5341B7AC2E603BB2003B8487 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -29,18 +29,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9FFD46D12E603BBC009E550F = {
+		5341B7A62E603BB2003B8487 = {
 			isa = PBXGroup;
 			children = (
-				9FFD46DC2E603BBC009E550F /* LifeStyle */,
-				9FFD46DB2E603BBC009E550F /* Products */,
+				5341B7B12E603BB2003B8487 /* LifeStyle */,
+				5341B7B02E603BB2003B8487 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		9FFD46DB2E603BBC009E550F /* Products */ = {
+		5341B7B02E603BB2003B8487 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9FFD46DA2E603BBC009E550F /* LifeStyle.app */,
+				5341B7AF2E603BB2003B8487 /* LifeStyle.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -48,64 +48,64 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		9FFD46D92E603BBC009E550F /* LifeStyle */ = {
+		5341B7AE2E603BB2003B8487 /* LifeStyle */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9FFD46E52E603BBE009E550F /* Build configuration list for PBXNativeTarget "LifeStyle" */;
+			buildConfigurationList = 5341B7BA2E603BB2003B8487 /* Build configuration list for PBXNativeTarget "LifeStyle" */;
 			buildPhases = (
-				9FFD46D62E603BBC009E550F /* Sources */,
-				9FFD46D72E603BBC009E550F /* Frameworks */,
-				9FFD46D82E603BBC009E550F /* Resources */,
+				5341B7AB2E603BB2003B8487 /* Sources */,
+				5341B7AC2E603BB2003B8487 /* Frameworks */,
+				5341B7AD2E603BB2003B8487 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				9FFD46DC2E603BBC009E550F /* LifeStyle */,
+				5341B7B12E603BB2003B8487 /* LifeStyle */,
 			);
 			name = LifeStyle;
 			packageProductDependencies = (
 			);
 			productName = LifeStyle;
-			productReference = 9FFD46DA2E603BBC009E550F /* LifeStyle.app */;
+			productReference = 5341B7AF2E603BB2003B8487 /* LifeStyle.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		9FFD46D22E603BBC009E550F /* Project object */ = {
+		5341B7A72E603BB2003B8487 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1640;
 				LastUpgradeCheck = 1640;
 				TargetAttributes = {
-					9FFD46D92E603BBC009E550F = {
+					5341B7AE2E603BB2003B8487 = {
 						CreatedOnToolsVersion = 16.4;
 					};
 				};
 			};
-			buildConfigurationList = 9FFD46D52E603BBC009E550F /* Build configuration list for PBXProject "LifeStyle" */;
+			buildConfigurationList = 5341B7AA2E603BB2003B8487 /* Build configuration list for PBXProject "LifeStyle" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = 9FFD46D12E603BBC009E550F;
+			mainGroup = 5341B7A62E603BB2003B8487;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = 9FFD46DB2E603BBC009E550F /* Products */;
+			productRefGroup = 5341B7B02E603BB2003B8487 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9FFD46D92E603BBC009E550F /* LifeStyle */,
+				5341B7AE2E603BB2003B8487 /* LifeStyle */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		9FFD46D82E603BBC009E550F /* Resources */ = {
+		5341B7AD2E603BB2003B8487 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -115,7 +115,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		9FFD46D62E603BBC009E550F /* Sources */ = {
+		5341B7AB2E603BB2003B8487 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -125,7 +125,7 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		9FFD46E32E603BBE009E550F /* Debug */ = {
+		5341B7B82E603BB2003B8487 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -160,7 +160,6 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = RK4VR3MF59;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -189,7 +188,7 @@
 			};
 			name = Debug;
 		};
-		9FFD46E42E603BBE009E550F /* Release */ = {
+		5341B7B92E603BB2003B8487 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -224,7 +223,6 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = RK4VR3MF59;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -246,7 +244,7 @@
 			};
 			name = Release;
 		};
-		9FFD46E62E603BBE009E550F /* Debug */ = {
+		5341B7BB2E603BB2003B8487 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -254,10 +252,8 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = RK4VR3MF59;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -268,7 +264,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = arkobaleno.LifeStyle;
+				PRODUCT_BUNDLE_IDENTIFIER = Guidance.LifeStyle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -276,7 +272,7 @@
 			};
 			name = Debug;
 		};
-		9FFD46E72E603BBE009E550F /* Release */ = {
+		5341B7BC2E603BB2003B8487 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -284,10 +280,8 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = RK4VR3MF59;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -298,7 +292,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = arkobaleno.LifeStyle;
+				PRODUCT_BUNDLE_IDENTIFIER = Guidance.LifeStyle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -309,25 +303,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9FFD46D52E603BBC009E550F /* Build configuration list for PBXProject "LifeStyle" */ = {
+		5341B7AA2E603BB2003B8487 /* Build configuration list for PBXProject "LifeStyle" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9FFD46E32E603BBE009E550F /* Debug */,
-				9FFD46E42E603BBE009E550F /* Release */,
+				5341B7B82E603BB2003B8487 /* Debug */,
+				5341B7B92E603BB2003B8487 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9FFD46E52E603BBE009E550F /* Build configuration list for PBXNativeTarget "LifeStyle" */ = {
+		5341B7BA2E603BB2003B8487 /* Build configuration list for PBXNativeTarget "LifeStyle" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9FFD46E62E603BBE009E550F /* Debug */,
-				9FFD46E72E603BBE009E550F /* Release */,
+				5341B7BB2E603BB2003B8487 /* Debug */,
+				5341B7BC2E603BB2003B8487 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 9FFD46D22E603BBC009E550F /* Project object */;
+	rootObject = 5341B7A72E603BB2003B8487 /* Project object */;
 }
