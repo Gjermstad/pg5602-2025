@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AddExerciseView: View
+struct ExerciseAdd: View
 {
   @State private var name: String = ""
   @Binding var exercises: [String]
@@ -51,7 +51,7 @@ struct AddExerciseView: View
 #Preview
 {
   // Vi bruker .constant for å kunne fake et parameter i minnet som gies til Preview
-  AddExerciseView(
+  ExerciseAdd(
     exercises: .constant(["abc","def"]),
     showSheet: .constant(true)
   )

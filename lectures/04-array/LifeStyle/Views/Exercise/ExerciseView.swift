@@ -24,9 +24,19 @@ struct ExerciseView: View
         }
         else
         {
-          List(exercises, id: \.self)
+          List($exercises, id: \.self)
           {
-            exercise in Text(exercise)
+            // Vi itererer over alle data i arrayet Exercises og får hver data
+            $exercise in
+            
+            NavigationLink
+            {
+              ExerciseEdit(exercise: $exercise)
+            }
+          label:
+            {
+              ExerciseRow(exercise: exercise)
+            }
           }
         }
       }
@@ -40,7 +50,7 @@ struct ExerciseView: View
           {
             showSheet.toggle()
           }
-          label:
+        label:
           {
             Image(systemName: "plus.circle.fill").font(.title2).tint(.orange)
           }
@@ -48,7 +58,7 @@ struct ExerciseView: View
       }
       .sheet(isPresented: $showSheet)
       {
-        AddExerciseView(exercises: $exercises, showSheet: $showSheet)
+        ExerciseAdd(exercises: $exercises, showSheet: $showSheet)
       }
     }
   }
