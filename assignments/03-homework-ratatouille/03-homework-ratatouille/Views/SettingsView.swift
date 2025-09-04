@@ -8,11 +8,20 @@
 import SwiftUI
 
 struct SettingsView: View {
+  @Binding var isDarkMode: Bool
+  
     var body: some View {
-        Text("SettingsView")
+      NavigationStack {
+        Form {
+          Section {
+            Toggle("Dark Mode", isOn: $isDarkMode)
+          }
+        }
+        .navigationTitle("Innstillinger")
+      }
     }
 }
 
 #Preview {
-    SettingsView()
+  SettingsView(isDarkMode: .constant(false))
 }

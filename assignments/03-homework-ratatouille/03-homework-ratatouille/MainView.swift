@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MainView: View {
+  @AppStorage("darkMode") private var isDarkMode: Bool = false
   
     var body: some View {
       NavigationStack {
@@ -19,7 +20,7 @@ struct MainView: View {
             SearchView()
           }
           Tab("Innstillinger", systemImage: "gear") {
-            SettingsView()
+            SettingsView(isDarkMode: $isDarkMode)
           }
         }
         .toolbar {
@@ -31,6 +32,7 @@ struct MainView: View {
           }
         }
       }
+      .environment(\.colorScheme, isDarkMode ? .dark : .light)
     }
 }
 
