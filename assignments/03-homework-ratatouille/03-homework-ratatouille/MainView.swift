@@ -8,14 +8,29 @@
 import SwiftUI
 
 struct MainView: View {
+  
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+      NavigationStack {
+        TabView {
+          Tab("Oppskrifter", systemImage: "fork.knife.circle.fill"){
+            RecipesView()
+          }
+          Tab("Søk", systemImage: "magnifyingglass.circle.fill") {
+            SearchView()
+          }
+          Tab("Innstillinger", systemImage: "gear") {
+            SettingsView()
+          }
         }
-        .padding()
+        .toolbar {
+          ToolbarItem(placement: .principal) {
+            Image("logo")
+              .resizable()
+              .scaledToFit()
+              .frame(height: 55)
+          }
+        }
+      }
     }
 }
 
