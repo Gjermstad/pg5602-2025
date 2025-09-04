@@ -8,8 +8,18 @@
 import SwiftUI
 
 struct RecipesView: View {
+  @State private var recipes: [String] = []
+  // ["Pizza", "Pasta", "Gelato"]
+  
+  
     var body: some View {
-        Text("RecipesView")
+      if (recipes.isEmpty) {
+        EmptyView(title: "Ingen matoppskrifter")
+      } else {
+        NavigationStack {
+          
+        }
+      }
     }
 }
 
