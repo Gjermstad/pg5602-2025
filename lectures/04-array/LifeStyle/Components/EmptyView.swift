@@ -9,6 +9,7 @@ import SwiftUI
 
 struct EmptyView: View
 {
+  // Om du har variabler som ikke starter med verdier så blir de påbudte parameter 
   var title: String
   var notes: String
   
@@ -21,7 +22,7 @@ struct EmptyView: View
   
   var body: some View
   {
-      ContentUnavailableView(title, systemImage: emptyicon, description: Text(notes))
+    ContentUnavailableView(title, systemImage: emptyicon, description: Text(notes))
   }
 }
 

@@ -48,7 +48,7 @@ struct ExerciseView: View
       }
       .sheet(isPresented: $showSheet)
       {
-        AddExerciseView(trening: $exercises)
+        AddExerciseView(exercises: $exercises, showSheet: $showSheet)
       }
     }
   }
