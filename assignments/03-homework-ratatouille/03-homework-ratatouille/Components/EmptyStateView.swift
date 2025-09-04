@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct EmptyView: View {
+struct EmptyStateView: View {
   @State private var title: String
   
   // Konstruktør
@@ -21,5 +21,5 @@ struct EmptyView: View {
 }
 
 #Preview {
-  EmptyView(title: "Ingen matoppskrifter")
+  EmptyStateView(title: "Ingen matoppskrifter")
 }
