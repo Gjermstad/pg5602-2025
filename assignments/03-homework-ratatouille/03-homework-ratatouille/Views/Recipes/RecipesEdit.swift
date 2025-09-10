@@ -8,9 +8,8 @@
 import SwiftUI
 
 struct RecipesEdit: View {
-  @Binding var recipe: String
+  @Binding var recipe: Recipe
   @State private var isEditing: Bool = false
-  @FocusState private var textFieldIsFocused: Bool
   
   var body: some View
   {
@@ -21,8 +20,7 @@ struct RecipesEdit: View {
       {
         Text("Rediger oppskrift")
         Form {
-          TextField(recipe, text: $recipe)
-            .focused($textFieldIsFocused)
+          TextField(recipe.recipeName, text: $recipe.recipeName)
         }
         .toolbar
         {
@@ -45,7 +43,7 @@ struct RecipesEdit: View {
       {
         Form
         {
-          Text(recipe)
+          Text(recipe.recipeName)
         }
         .toolbar
         {
@@ -67,5 +65,5 @@ struct RecipesEdit: View {
 }
 
 #Preview {
-  RecipesEdit(recipe: .constant("Pizza"))
+  RecipesEdit(recipe: .constant(testRecipe))
 }

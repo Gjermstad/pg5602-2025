@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct RecipesView: View {
-  @State private var recipes: [String] = ["Pizza", "Pasta", "Gelato"]
-  
+  @State private var recipes: [Recipe] = [testRecipe]
+  @State private var showSheet: Bool = false
   
   var body: some View
   {
@@ -17,13 +17,14 @@ struct RecipesView: View {
     {
       Group
       {
+        // Visning om ingen oppskrifter er lagret
         if recipes.isEmpty
         {
           EmptyStateView(title: "Ingen matoppskrifter")
         }
-        else
+        else // Visninger om det er oppskrifter lagret
         {
-          List($recipes, id: \.self)
+          List($recipes)
           {
             $recipe in
             
@@ -33,13 +34,27 @@ struct RecipesView: View {
             }
           label:
             {
-              RecipesRow(recipe: recipe)
+              RecipesRow(recipe: $recipe)
             }
           }
         }
       }
       .navigationTitle("Oppskrifter")
       .navigationBarTitleDisplayMode(.inline)
+      .toolbar {
+        ToolbarItem(placement: .topBarTrailing) {
+          Button {
+            showSheet.toggle()
+          }
+          label:
+          {
+            Image(systemName: "plus.circle.fill").font(.title2).tint(.blue)
+          }
+        }
+      }
+      .sheet(isPresented: $showSheet) {
+        RecipesAdd(recipes: $recipes, showSheet: $showSheet)
+      }
     }
   }
 }

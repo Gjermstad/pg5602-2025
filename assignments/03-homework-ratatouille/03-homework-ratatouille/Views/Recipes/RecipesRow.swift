@@ -10,27 +10,29 @@ import SwiftUI
 struct RecipesRow: View
 {
   
-  @State var recipe: String
+  @Binding var recipe: Recipe
   
   var body: some View
   {
     HStack
     {
       // Henter ut første bokstav i oppskriften
-      let firstChar:Character = recipe[recipe.startIndex]
-      Text(String(firstChar))
-        .padding()
-        .background(
-          Circle()
-            .stroke(.blue, lineWidth: 3)
-            .frame(height: 60)
-        )
-      Text(recipe)
-        .font(.largeTitle)
+      Text(recipe.recipeName.first!.uppercased())
+        .font(.title).foregroundStyle(.white)
+        .frame(width: 60, height: 60)
+        .background(Gradient(colors: [.blue, .purple]))
+        .clipShape(.circle)
+      
+      VStack(alignment: .leading) {
+        Text(recipe.recipeName)
+          .font(.largeTitle)
+        Text(recipe.ingress)
+          .font(.subheadline)
+      }
     }
   }
 }
 
 #Preview {
-  RecipesRow(recipe: "Pizza")
+  RecipesRow(recipe: .constant(testRecipe))
 }
