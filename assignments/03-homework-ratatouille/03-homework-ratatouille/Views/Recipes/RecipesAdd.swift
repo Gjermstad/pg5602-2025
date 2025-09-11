@@ -10,7 +10,8 @@ import SwiftUI
 struct RecipesAdd: View {
   
   @Binding var recipes: [Recipe]
-  @Binding var showSheet: Bool
+  // Gjør det mulig å kalle `dismiss()` for å lukke .sheet
+  @Environment(\.dismiss) private var dismiss
   
   @State private var recipeName: String = ""
   @State private var ingress: String = ""
@@ -36,7 +37,7 @@ struct RecipesAdd: View {
         {
           Button("Avbryt", role: .cancel)
           {
-            showSheet.toggle()
+            dismiss()
           }
         }
         // Lagre oppskrift-knapp
@@ -45,7 +46,7 @@ struct RecipesAdd: View {
           Button("Lagre")
           {
             recipes.append(Recipe(recipeName: recipeName, ingress: ingress, notes: notes))
-            showSheet.toggle()
+            dismiss()
           }
           .disabled(recipeName.isEmpty)
         }
@@ -58,6 +59,6 @@ struct RecipesAdd: View {
 }
 
 #Preview {
-  RecipesAdd(recipes: .constant([testRecipe]), showSheet: .constant(true))
+  RecipesAdd(recipes: .constant([testRecipe]))
 }
 
