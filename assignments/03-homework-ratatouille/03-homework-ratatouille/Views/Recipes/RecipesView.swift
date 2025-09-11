@@ -30,7 +30,7 @@ struct RecipesView: View {
             
             NavigationLink
             {
-              RecipesEdit(recipe: $recipe)
+              RecipesDetails(recipe: $recipe)
             }
           label:
             {
@@ -46,16 +46,18 @@ struct RecipesView: View {
           Button {
             showSheet.toggle()
           }
-          label:
+        label:
           {
             Image(systemName: "plus.circle.fill").font(.title2).tint(.blue)
           }
         }
       }
+      
+      // Modal for RecipesAdd sitt vindu
       .sheet(isPresented: $showSheet) {
-        RecipesAdd(recipes: $recipes, showSheet: $showSheet)
+        RecipesAdd(recipes: $recipes)
       }
-    }
+    } // End NavigationStack
   }
 }
 

@@ -51,8 +51,9 @@ struct RecipesAdd: View {
           .disabled(recipeName.isEmpty)
         }
       }
-    }
-    // Info rundt hvordan Sheet ser ut
+    } // End navigationStack
+    
+    // Info rundt hvordan Sheet med dette viewet ser ut
     .presentationDetents([.height(250), .medium])
     .presentationCornerRadius(45)
   }

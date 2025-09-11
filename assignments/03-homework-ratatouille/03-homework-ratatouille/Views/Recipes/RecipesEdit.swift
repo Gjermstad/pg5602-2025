@@ -9,58 +9,56 @@ import SwiftUI
 
 struct RecipesEdit: View {
   @Binding var recipe: Recipe
-  @State private var isEditing: Bool = false
+  // Gjør det mulig å kalle `dismiss()` for å lukke .sheet
+  @Environment(\.dismiss) private var dismiss
   
   var body: some View
   {
     NavigationStack
     {
-      // Vises om man trykker Rediger
-      if isEditing
+      Text("Rediger oppskrift")
+      Form
       {
-        Text("Rediger oppskrift")
-        Form {
+        Section("Navn") {
           TextField(recipe.recipeName, text: $recipe.recipeName)
         }
-        .toolbar
-        {
-          ToolbarItem(placement: .topBarTrailing)
-          {
-            Button
-            {
-              isEditing.toggle()
-            }
-          label:
-            {
-              Text("Rediger")
-            }
-          }
+        Section("Kort beskrivelse") {
+          TextField(recipe.ingress, text: $recipe.ingress)
+        }
+        Section("Notater") {
+          TextField(recipe.notes, text: $recipe.notes)
         }
       }
-      
-      // Vises når man trykker inn på en oppskrift
-      else
+      .toolbar
       {
-        Form
+        ToolbarItem(placement: .cancellationAction)
         {
-          Text(recipe.recipeName)
-        }
-        .toolbar
-        {
-          ToolbarItem(placement: .topBarTrailing)
+          Button
           {
-            Button
-            {
-              isEditing.toggle()
-            }
-          label:
-            {
-              Text("Rediger")
-            }
+            dismiss()
+          }
+        label:
+          {
+            Text("Avbryt")
+          }
+        }
+        ToolbarItem(placement: .confirmationAction)
+        {
+          Button
+          {
+            dismiss()
+          }
+        label:
+          {
+            Text("Lagre")
           }
         }
       }
-    }
+    } // End NavigationStack
+    
+    // Info rundt hvordan Sheet med dette viewet ser ut
+    .presentationDetents([.large])
+    .presentationCornerRadius(45)
   }
 }
 

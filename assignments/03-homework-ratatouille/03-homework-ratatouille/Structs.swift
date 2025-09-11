@@ -17,6 +17,7 @@ struct Recipe: Identifiable
   var favorite: Bool   // Markør for favoritt
   var trash: Bool     // Markør for arkivert
   var created: Date   // Når oppskriften er lagt til
+  var lastEdited: Date // Når oppskriften sist ble endret
   
   init(recipeName: String, ingress: String? = nil, notes: String) {
     self.id = UUID()       // Lager unik id
@@ -26,6 +27,7 @@ struct Recipe: Identifiable
     self.favorite = false
     self.trash = false
     self.created = .now     // Henter tid og dato når koden kjøres
+    self.lastEdited = .now   // Henter tid og dato når koden kjøres
   }
 }
 
