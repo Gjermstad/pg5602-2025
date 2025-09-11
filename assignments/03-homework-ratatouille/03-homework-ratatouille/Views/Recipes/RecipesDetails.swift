@@ -69,7 +69,9 @@ struct RecipesDetails: View
       
       // Modal for RecipesAdd sitt vindu
       .sheet(isPresented: $isEditing) {
-        RecipesEdit(recipe: $recipe)
+        RecipesEdit(draft: recipe) { updated in
+          recipe = updated
+        }
       }
       
     } // End Vstack

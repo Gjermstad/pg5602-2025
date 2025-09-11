@@ -39,20 +39,18 @@ struct RecipesView: View {
           }
         }
       }
-      .navigationTitle("Oppskrifter")
       .navigationBarTitleDisplayMode(.inline)
       .toolbar {
         ToolbarItem(placement: .topBarTrailing) {
           Button {
             showSheet.toggle()
-          }
-        label:
-          {
-            Image(systemName: "plus.circle.fill").font(.title2).tint(.blue)
+          } label: {
+            Image(systemName: "plus.circle.fill")
+              .font(.title2)
+              .tint(.blue)
           }
         }
       }
-      
       // Modal for RecipesAdd sitt vindu
       .sheet(isPresented: $showSheet) {
         RecipesAdd(recipes: $recipes)

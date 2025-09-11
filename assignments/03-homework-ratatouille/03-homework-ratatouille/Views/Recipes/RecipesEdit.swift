@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct RecipesEdit: View {
-  @Binding var recipe: Recipe
+  @State var draft: Recipe
+  var onSave: (Recipe) -> Void
+  
   // Gjør det mulig å kalle `dismiss()` for å lukke .sheet
   @Environment(\.dismiss) private var dismiss
   
@@ -20,37 +22,30 @@ struct RecipesEdit: View {
       Form
       {
         Section("Navn") {
-          TextField(recipe.recipeName, text: $recipe.recipeName)
+          TextField("Navn", text: $draft.recipeName)
         }
         Section("Kort beskrivelse") {
-          TextField(recipe.ingress, text: $recipe.ingress)
+          TextField("Ingress", text: $draft.ingress)
         }
         Section("Notater") {
-          TextField(recipe.notes, text: $recipe.notes)
+          TextEditor(text: $draft.notes)
         }
       }
       .toolbar
       {
         ToolbarItem(placement: .cancellationAction)
         {
-          Button
+          Button("Avbryt")
           {
             dismiss()
-          }
-        label:
-          {
-            Text("Avbryt")
           }
         }
         ToolbarItem(placement: .confirmationAction)
         {
-          Button
+          Button("Lagre")
           {
+            onSave(draft)
             dismiss()
-          }
-        label:
-          {
-            Text("Lagre")
           }
         }
       }
@@ -63,5 +58,7 @@ struct RecipesEdit: View {
 }
 
 #Preview {
-  RecipesEdit(recipe: .constant(testRecipe))
+  RecipesEdit(
+    draft: testRecipe,
+    onSave: { _ in /* no-op i preview */ })
 }

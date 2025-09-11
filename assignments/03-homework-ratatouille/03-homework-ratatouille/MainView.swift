@@ -10,32 +10,32 @@ import SwiftUI
 struct MainView: View {
   @AppStorage("darkMode") private var isDarkMode: Bool = false
   
-    var body: some View {
-      NavigationStack {
-        TabView {
-          Tab("Oppskrifter", systemImage: "fork.knife.circle.fill"){
-            RecipesView()
-          }
-          Tab("Søk", systemImage: "magnifyingglass.circle.fill") {
-            SearchView()
-          }
-          Tab("Innstillinger", systemImage: "gear") {
-            SettingsView(isDarkMode: $isDarkMode)
-          }
+  var body: some View {
+    NavigationStack {
+      TabView {
+        Tab("Oppskrifter", systemImage: "fork.knife.circle.fill"){
+          RecipesView()
         }
-        .toolbar {
-          ToolbarItem(placement: .principal) {
-            Image("logo")
-              .resizable()
-              .scaledToFit()
-              .frame(height: 55)
-          }
+        Tab("Søk", systemImage: "magnifyingglass.circle.fill") {
+          SearchView()
+        }
+        Tab("Innstillinger", systemImage: "gear") {
+          SettingsView(isDarkMode: $isDarkMode)
         }
       }
-      .environment(\.colorScheme, isDarkMode ? .dark : .light)
+      .toolbar {
+        ToolbarItem(placement: .principal) {
+          Image("logo")
+            .resizable()
+            .scaledToFit()
+            .frame(height: 50)
+        }
+      }
     }
+    .environment(\.colorScheme, isDarkMode ? .dark : .light)
+  }
 }
 
 #Preview {
-    MainView()
+  MainView()
 }
