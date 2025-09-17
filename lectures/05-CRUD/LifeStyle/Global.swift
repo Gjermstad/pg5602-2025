@@ -8,13 +8,14 @@
 // Foundation er et av de mest grunnleggende rammeverkene i iOS, macOS og Swift generelt.
 import SwiftUI
 
-let version = "15.09.2025-1"
+let version = "17.09.2025-1"
 
 // Navnet på SF Symbol som brukes når listen er tom
 let emptyicon = "square.stack.3d.up.slash"
 
 // Lager en lineær gradient fra øvre venstre til nedre høyre hjørne
 // med tilpasset gjennomsiktighet på fargene "leading" og "trailing"
+// Fargene er valgt i Assets
 let gradient = LinearGradient(
     colors: [Color("leading").opacity(0.3), Color("trailing").opacity(0.5)],
     startPoint: .topLeading,

@@ -9,6 +9,8 @@ import Foundation
 
 // Exercise representerer en treningsøvelse og gjøres Identifiable
 // slik at vi kan bruke den direkte i SwiftUI List/ForEach
+// Alltid stor forbokstav på navn på structs
+// At det står ": Identifiable" gjør at det må finnes en id-kolonne
 struct Exercise: Identifiable
 {
   // Unik identifikator – kreves av identifiable
@@ -37,6 +39,7 @@ struct Exercise: Identifiable
   }
 }
 
+// Vi har lagt inn standardverdier for String og notes i konstruktøren som gjøre at vi kan lage en uten parameter om vi ønsker
 let exercise1 = Exercise()
 let exercise2 = Exercise(title: "Klatrevegg")
 let exercise3 = Exercise(title: "Svømming", notes: "1000 meter brystsvømming.")

@@ -9,6 +9,8 @@ import SwiftUI
 
 struct MenuView: View
 {
+  @Binding var isPresented: Bool
+  
   var body: some View
   {
     // Menu lager en nedtrekksmeny som vises når brukeren trykker på ikonet.
@@ -40,6 +42,7 @@ struct MenuView: View
       
       Button
       {
+        isPresented.toggle()
       }
     label:
       {
@@ -55,5 +58,5 @@ struct MenuView: View
 
 #Preview
 {
-  MenuView()
+  MenuView(isPresented: .constant(false))
 }

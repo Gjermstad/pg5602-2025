@@ -15,8 +15,11 @@ struct MainView: View
   
   var body: some View
   {
+    // Det er anbefalt at TabView er helt ytterst med en NavigationStack for hvert View. Dette gjør at du beholder plasseringen i hver Tab når du hopper mellom dem.
     TabView
     {
+      // Første NavtigationStack er hva som blir første tab som vises når appen åpnes
+      // TAB 1
       NavigationStack
       {
         HomeView()
@@ -26,7 +29,7 @@ struct MainView: View
         Image(systemName: "house")
         Text("Hjem")
       }
-      
+      // TAB 2
       NavigationStack
       {
         ProgressView()
@@ -36,7 +39,7 @@ struct MainView: View
         Image(systemName: "chart.line.uptrend.xyaxis")
         Text("Progresjon")
       }
-      
+      // TAB 3
       NavigationStack
       {
         SettingsView()
