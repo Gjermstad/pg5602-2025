@@ -9,7 +9,8 @@ import SwiftUI
 
 struct HomeView: View
 {
-  @State private var exercises: [Exercise] = [exercise1, exercise2, exercise3]
+  @EnvironmentObject var store: ExerciseStore
+  
   @State private var showSheet = false
   
   var body: some View
@@ -22,13 +23,13 @@ struct HomeView: View
         
         Group
         {
-          if exercises.isEmpty
+          if store.exercises.isEmpty
           {
             EmptyView()
           }
           else
           {
-            List(exercises)
+            List(store.exercises)
             {
               exercise in
               
@@ -67,5 +68,5 @@ struct HomeView: View
 
 #Preview
 {
-  HomeView()
+  HomeView().environmentObject(ExerciseStore())
 }

@@ -42,3 +42,16 @@ let exercise2 = Exercise(title: "Klatrevegg")
 let exercise3 = Exercise(title: "Svømming", notes: "1000 meter brystsvømming.")
 let exercise4 = Exercise(title: "Styrketrening", notes: "Armhevinger, planke og squats.")
 let exercise5 = Exercise(title: "Løping", notes: "15 kilometer med intervaller.")
+
+// I Swift anbefales å bruke xxxStore som navn for klasser som lagrer data
+// ObservableObject betyr at objektet sier til Viewet at det har vært endring i klassen
+class ExerciseStore: ObservableObject
+{
+  // @Published sier ifra at dette elementet publiserer endringer til Viewet
+  // @Published brukes sammen med ObservableObject
+  @Published var exercises: [Exercise] = []
+  
+  init() {
+    exercises = [exercise1, exercise2, exercise3, exercise4, exercise5]
+  }
+}

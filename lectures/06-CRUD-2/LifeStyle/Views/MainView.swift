@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MainView: View
-{
+{  
   // @AppStorage er en property wrapper som er tett integrert med SwiftUI sin livssyklus og krever en
   // View-context for å fungere korrekt. Den er designet for å fungere inne i SwiftUI-visninger
   @AppStorage("darkmode") private var darkmode: Bool = false

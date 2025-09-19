@@ -12,11 +12,14 @@ import SwiftUI
 
 struct LifeStyleApp: App
 {
+  @StateObject var store = ExerciseStore()
+  
   var body: some Scene
   {
     WindowGroup
     {
-      MainView()
+      // ved å legge til environmentObject på hovedViewet til appen så ligger databasen rundt hele appen injisert
+      MainView().environmentObject(store)
     }
   }
 }
