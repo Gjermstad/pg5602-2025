@@ -53,5 +53,5 @@ struct MainView: View
 
 #Preview
 {
-  MainView()
+  MainView().environmentObject(ExerciseStore())
 }

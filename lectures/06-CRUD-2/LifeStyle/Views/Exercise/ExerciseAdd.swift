@@ -46,6 +46,7 @@ struct ExerciseAdd: View
             exercises.append(exercise)
             dismiss()
           }
+          .disabled(title.isEmpty)
         }
       }
     }

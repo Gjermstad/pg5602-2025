@@ -13,19 +13,36 @@ struct ExerciseRow: View
   
   var body: some View
   {
-    VStack(alignment: .leading)
+    HStack
     {
-      HStack
+      VStack
       {
-        Text(exercise.title)
-        Spacer()
+        Text(exercise.title.first!.uppercased())
+          .font(.title2).fontWeight(.bold)
+          .foregroundStyle(.white)
+          .frame(width: 60, height: 60)
+          .background(gradient)
+          .clipShape(Circle())
       }
-        
-      Text(exercise.notes)
+      
+      VStack(alignment: .leading)
+      {
+        HStack
+        {
+          Text(exercise.title)
+            .font(.title2)
+            .fontWeight(.bold)
+          // Spacer brukes for at Hstack skal ta opp hele bredden
+          Spacer()
+        }
+        Text(exercise.notes)
+      }
     }
-    .padding()
-    .background(gradient)
     .cornerRadius(20)
+    .swipeActions(edge: .leading, allowsFullSwipe: true)
+    {
+      
+    }
   }
 }
 

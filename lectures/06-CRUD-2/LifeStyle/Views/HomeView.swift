@@ -46,6 +46,7 @@ struct HomeView: View
               .padding()
               .background(gradient)
               .cornerRadius(20)
+              .listRowSeparator(.hidden)
             }
             .listStyle(.plain)
           }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ExerciseView: View
 {
-  @State private var exercises: [Exercise] = [exercise1, exercise2, exercise3, exercise4, exercise5]
+  @EnvironmentObject var store: ExerciseStore
   
   var body: some View
   {
@@ -17,13 +17,13 @@ struct ExerciseView: View
     {
       Group
       {
-        if exercises.isEmpty
+        if store.exercises.isEmpty
         {
           EmptyView()
         }
         else
         {
-          List($exercises)
+          List($store.exercises)
           {
             $exercise in
             
@@ -35,6 +35,7 @@ struct ExerciseView: View
             {
               ExerciseRow(exercise: $exercise)
             }
+            .listRowSeparator(.hidden)
           }
           .listStyle(.plain)
         }
@@ -46,7 +47,7 @@ struct ExerciseView: View
         {
           NavigationLink
           {
-            ExerciseAdd(exercises: $exercises)
+            ExerciseAdd(exercises: $store.exercises)
           }
           label:
           {
@@ -60,5 +61,5 @@ struct ExerciseView: View
 
 #Preview
 {
-  ExerciseView()
+  ExerciseView().environmentObject(ExerciseStore())
 }
