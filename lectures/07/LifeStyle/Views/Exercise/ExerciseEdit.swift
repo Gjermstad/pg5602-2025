@@ -14,8 +14,17 @@ struct ExerciseEdit: View
   @Environment(\.dismiss) private var dismiss
   
   @Binding var exercise: Exercise
-  @State private var title: String = ""
-  @State private var notes: String = ""
+  @State private var title: String
+  @State private var notes: String
+  @State private var level: Level
+  
+  init(exercise: Binding<Exercise>)
+  {
+    _exercise = exercise
+    _title = .init(initialValue: exercise.wrappedValue.title)
+    _notes = .init(initialValue: exercise.wrappedValue.notes)
+    _level = .init(initialValue: exercise.wrappedValue.level)
+  }
   
   var body: some View
   {
@@ -24,7 +33,20 @@ struct ExerciseEdit: View
       Form
       {
         TextField("Tittel", text: $title)
-        TextField("Notater", text: $notes)
+        Section("Notater")
+        {
+          TextEditor(text: $notes).frame(minHeight: 100)
+        }
+        
+        Picker("Vansklighetsgrad", selection: $level)
+        {
+          ForEach(Level.allCases)
+          {
+            level in Text(level.title).tag(level)
+          }
+        }
+        .pickerStyle(.segmented)
+        
       }
       .navigationBarTitle("Redigere 🏋️‍♀️")
       .navigationBarTitleDisplayMode(.inline)
@@ -45,16 +67,18 @@ struct ExerciseEdit: View
           {
             exercise.title = title
             exercise.notes = notes
+            exercise.level = level
             dismiss()
           }
         }
       }
     }
-    .onAppear()
-    {
-      title = exercise.title
-      notes = exercise.notes
-    }
+//    .onAppear()
+//    {
+//      title = exercise.title
+//      notes = exercise.notes
+//      level = exercise.level
+//    }
   }
 }
 

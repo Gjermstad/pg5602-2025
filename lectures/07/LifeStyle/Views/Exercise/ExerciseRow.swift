@@ -31,7 +31,7 @@ struct ExerciseRow: View
         {
           Text(exercise.title).font(.title2)
           Text(exercise.notes)
-          Text(exercise.starred.description)
+          Text("Favoritt: " + exercise.starred.description)
         }
         
         // Spacer legges inn så stjernen for favoritter legges helt til høyre

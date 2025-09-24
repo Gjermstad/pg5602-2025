@@ -33,11 +33,17 @@ struct ExerciseAdd: View
         TextEditor(text: $notes)
           .frame(minHeight: 200)
         Picker("Vanskelighetsgrad", selection: $level)
+        {
+          ForEach(Level.allCases)
           {
-            
+            level in Text(level.title).tag(level)
           }
+        }
+        .pickerStyle(.segmented)
+        
       }
       .navigationBarTitle("Ny 🏋️‍♀️")
+      .navigationBarBackButtonHidden(true)
       .toolbar
       {
         ToolbarItem(placement: .cancellationAction)
@@ -53,7 +59,7 @@ struct ExerciseAdd: View
           Button("Lagre")
           {
             // Oppretter et nytt ellement
-            let exercise = Exercise(title: title, notes: notes)
+            var exercise = Exercise(title: title, notes: notes, level: level)
             
             // Legger til ellement i tabellen/array
             store.exercises.append(exercise)

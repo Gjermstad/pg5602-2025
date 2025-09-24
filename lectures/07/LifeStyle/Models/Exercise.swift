@@ -48,12 +48,12 @@ struct Exercise: Identifiable
   // som tittel, notater, dato og ID – får riktige startverdier. Noen av disse
   // verdiene kan vi selv bestemme, mens andre blir automatisk satt, som for eksempel
   // en unik ID og tidspunktet for når objektet ble opprettet.
-  init(title: String = "Tittel", notes: String = "Notater")
+  init(title: String = "Tittel", notes: String = "Notater", level: Level = .easy)
   {
     id = UUID()
     self.title = title
     self.notes = notes
-    level = .easy
+    self.level = level
     starred = false
     archive = false
     created = .now
