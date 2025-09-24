@@ -21,6 +21,7 @@ struct ExerciseAdd: View
   
   @State private var title = ""
   @State private var notes = ""
+  @State private var level: Level = .easy
   
   var body: some View
   {
@@ -29,7 +30,12 @@ struct ExerciseAdd: View
       Form
       {
         TextField("Tittel", text: $title)
-        TextField("Notater", text: $notes)
+        TextEditor(text: $notes)
+          .frame(minHeight: 200)
+        Picker("Vanskelighetsgrad", selection: $level)
+          {
+            
+          }
       }
       .navigationBarTitle("Ny 🏋️‍♀️")
       .toolbar

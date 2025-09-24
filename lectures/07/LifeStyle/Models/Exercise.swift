@@ -7,6 +7,27 @@
 
 import Foundation
 
+enum Level: Int8, Identifiable, CaseIterable
+{
+  case easy
+  case medium
+  case hard
+  
+  // Vi sier at råverdien (0, 1 og 2) returneres som id
+  var id: Int8 { rawValue }
+  
+  // For CaseInterable så lages en switch med returverdi
+  var title: String
+  {
+    switch self
+    {
+      case .easy: "Enkel"
+      case .medium: "Middels"
+      case .hard: "Hard"
+    }
+  }
+}
+
 // Exercise representerer en treningsøvelse.
 // Den gjøres Identifiable slik at SwiftUI kan bruke den i
 // List og ForEach uten at vi må angi en egen id manuelt.
@@ -17,6 +38,7 @@ struct Exercise: Identifiable
   
   var title: String
   var notes: String
+  var level: Level
   var starred: Bool
   var archive: Bool
   var created: Date
@@ -31,6 +53,7 @@ struct Exercise: Identifiable
     id = UUID()
     self.title = title
     self.notes = notes
+    level = .easy
     starred = false
     archive = false
     created = .now

@@ -34,6 +34,7 @@ struct ExerciseRow: View
           Text(exercise.starred.description)
         }
         
+        // Spacer legges inn så stjernen for favoritter legges helt til høyre
         Spacer()
         
         // Hvis øvelsen er merket som favoritt (starred = true),
@@ -46,6 +47,9 @@ struct ExerciseRow: View
         }
       }
     }
+    // Swipe-actions legges på ytterste Vstack for å kunne påvirke hele objektet
+    // allowsFullSwipe lar brukeren swipe hele veien over for å markere
+    // På sletting så gir vi ikke lov til å sveipe over for å sikre at brukeren aktivt må trykke på knappen
     .swipeActions(edge: .leading, allowsFullSwipe: true)
     {
       // Sveip til venstre → merk som favoritt
