@@ -10,6 +10,8 @@ import SwiftData
 
 struct MainView: View
 {
+  @Environment(\.modelContext) private var context
+  
   // @AppStorage er en property wrapper som er tett integrert med SwiftUI sin livssyklus og krever en
   // View-context for å fungere korrekt. Den er designet for å fungere inne i SwiftUI-visninger
   @AppStorage("darkmode") private var darkmode: Bool = false
@@ -47,6 +49,13 @@ struct MainView: View
         Image(systemName: "gear")
         Text("Innstillinger")
       }
+    }
+    .onAppear() // her legger vi inn kategorier ved oppstart av appen
+    {
+      context.insert(category1)
+      context.insert(category2)
+      context.insert(category3)
+      context.insert(category4)
     }
     .environment(\.colorScheme, darkmode ? .dark : .light)
   }

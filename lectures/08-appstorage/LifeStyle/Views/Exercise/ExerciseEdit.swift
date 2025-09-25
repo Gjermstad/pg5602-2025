@@ -10,6 +10,8 @@ import SwiftData
 
 struct ExerciseEdit: View
 {
+  @Query private var categories: [Category]
+  
   // Dismiss gir tilgang til en funksjon fra SwiftUI sitt miljø som kan lukke
   // det gjeldende View. Du kaller bare dismiss() når du vil lukke visningen.
   @Environment(\.dismiss) private var dismiss
@@ -18,12 +20,15 @@ struct ExerciseEdit: View
   
   @State private var title: String
   @State private var notes: String
+  @State private var category: Category?
   
+  // Vi bruker enten init() eller onAppear når vi skal hente ut data når Viewet lastes inn
   init(exercise: Exercise)
   {
     self.exercise = exercise
     _title = .init(initialValue: exercise.title)
     _notes = .init(initialValue: exercise.notes)
+    _category = .init(initialValue: exercise.category)
   }
   
   var body: some View
@@ -33,6 +38,16 @@ struct ExerciseEdit: View
       Form
       {
         TextField("Tittel", text: $title)
+        
+        Picker("Kategori", selection: $category)
+        {
+          Text("Ingen kategori").tag(Category?.none)
+          
+          ForEach(categories)
+          {
+            category in Text(category.title).tag(Category?.some(category))
+          }
+        }
         
         Section("Notater")
         {
@@ -58,6 +73,7 @@ struct ExerciseEdit: View
           {
             exercise.title = title
             exercise.notes = notes
+            exercise.category = category
             dismiss()
           }
         }
@@ -68,5 +84,5 @@ struct ExerciseEdit: View
 
 #Preview
 {
-  ExerciseEdit()
+  ExerciseEdit(exercise: exercise1)
 }

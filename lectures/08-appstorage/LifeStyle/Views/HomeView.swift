@@ -38,11 +38,11 @@ struct HomeView: View
               {
                 HStack
                 {
-                  Text(exercise.title).font(.title)
+                  Text(exercise.title).font(.title).bold()
                   Spacer()
                 }
                 
-                Text(exercise.notes).font(.title3)
+                Text(exercise.notes.prefix(30) + "...").font(.title3)
               }
               .padding()
               .background(gradient)

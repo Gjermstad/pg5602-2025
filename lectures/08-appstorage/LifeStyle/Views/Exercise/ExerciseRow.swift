@@ -9,9 +9,7 @@ import SwiftUI
 
 struct ExerciseRow: View
 {
-  // @Binding gjør at ExerciseRow får en "kobling" til en øvelse uten å eie data selv.
-  // Endringer her oppdaterer data der ExerciseRow brukes (f.eks. i en liste).
-  @Binding var exercise: Exercise
+  var exercise: Exercise
   
   var body: some View
   {
@@ -29,9 +27,18 @@ struct ExerciseRow: View
         
         VStack(alignment: .leading)
         {
-          Text(exercise.title).font(.title2)
-          Text(exercise.notes)
-          Text(exercise.starred.description)
+          Text(exercise.title).font(.title2).bold()
+          
+          if(exercise.notes.count > 20)
+          {
+            Text(exercise.notes.prefix(20) + "...")
+              .italic()
+          } else {
+            Text(exercise.notes.prefix(20))
+              .italic()
+          }
+
+          Text("Er favoritt: " + exercise.starred.description)
         }
         
         Spacer()
@@ -75,8 +82,6 @@ struct ExerciseRow: View
 
 #Preview
 {
-  // Preview viser én eksempel-øvelse (exercise5).
-  // .constant brukes fordi Preview trenger en "binding" til en øvelse,
-  // men vi sender inn en fast (ikke-endringsbar) verdi.
-  ExerciseRow(exercise: .constant(exercise5)).padding(20)
+  // Preview viser én eksempel-øvelse (exercise1).
+  ExerciseRow(exercise: exercise1).padding(20)
 }

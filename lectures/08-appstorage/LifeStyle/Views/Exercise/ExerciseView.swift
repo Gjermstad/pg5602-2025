@@ -34,7 +34,7 @@ struct ExerciseView: View
             }
             label:
             {
-              // ExerciseRow(exercise: exercise)
+              ExerciseRow(exercise: exercise)
             }
             .listRowSeparator(.hidden)
           }

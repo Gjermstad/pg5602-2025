@@ -16,6 +16,7 @@ import SwiftData // biblioteket for datamodelering/lagre data på mobilen
   
   var title: String
   var notes: String
+  var category: Category? // ? betyr at kategori kan være tom, og da trenger vi ikke å legge den i init()
   var starred: Bool
   var archive: Bool
   var created: Date
@@ -39,4 +40,4 @@ import SwiftData // biblioteket for datamodelering/lagre data på mobilen
 
 // Eksempeldata – brukes til å fylle appen med innhold i starten.
 // Dette er nyttig både for testing og for forhåndsvisning i SwiftUI.
-let exercise1 = Exercise(title: "Løping", notes: "15 kilometer med intervaller.")
+let exercise1 = Exercise(title: "Løping", notes: "15 kilometer med intervaller. Løper som bare faaen til hjertet føles som om det skal falle ut av kroppen")

@@ -11,6 +11,7 @@ import SwiftData
 struct ExerciseAdd: View
 {
   @Environment(\.modelContext) private var context
+  @Query private var categories: [Category]
   
   // Dismiss gir tilgang til en funksjon fra SwiftUI sitt miljø som kan lukke
   // det gjeldende View. Du kaller bare dismiss() når du vil lukke visningen.
@@ -18,6 +19,7 @@ struct ExerciseAdd: View
   
   @State private var title = ""
   @State private var notes = ""
+  @State private var category: Category?
   
   var body: some View
   {
@@ -26,8 +28,21 @@ struct ExerciseAdd: View
       Form
       {
         TextField("Tittel", text: $title)
-        TextEditor(text: $notes).frame(minHeight: 200)
         
+        Picker("Velg kategori", selection: $category)
+        {
+          Text("Ingen kategori").tag(Category?.none)
+          
+          ForEach(categories)
+          {
+            category in Text(category.title).tag(Category?.some(category))
+          }
+        }
+        
+        Section("Notater")
+        {
+          TextEditor(text: $notes).frame(minHeight: 200)
+        }
       }
       .navigationBarTitle("Ny 🏋️‍♀️")
       .navigationBarBackButtonHidden(true)
@@ -46,7 +61,11 @@ struct ExerciseAdd: View
           Button("Lagre")
           {
             // Oppretter et nytt ellement og lagrer den
-            let exercise = Exercise(title: title, notes: notes)
+            let exercise = Exercise()
+            exercise.title = title
+            exercise.notes = notes
+            exercise.category = category
+            
             context.insert(exercise)
             dismiss()
           }
