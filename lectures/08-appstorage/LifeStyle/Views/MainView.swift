@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct MainView: View
 {
@@ -53,9 +54,5 @@ struct MainView: View
 
 #Preview
 {
-  // Selv om MainView ikke bruker ExerciseStore direkte, trenger HomeView det.
-  // Derfor må vi "late som" at PreView er appen og injisere et environmentObject
-  // slik som vi gjorde med MainView i LifeStyleApp
-
-  MainView().environmentObject(ExerciseStore())
+  MainView().modelContainer(for: [Exercise.self])
 }

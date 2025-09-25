@@ -6,14 +6,11 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct HomeView: View
 {
-  // @EnvironmentObject brukes når et View skal hente en delt data-kilde
-  // som er injisert høyere opp i hierarkiet.
-  // Her betyr det at HomeView forventer å finne en ExerciseStore
-  // som allerede er lagt inn i environment i MainView eller i appen.
-  @EnvironmentObject var store: ExerciseStore
+  @Query private var exercises: [Exercise]
   
   @State private var showSheet = false
   
@@ -27,13 +24,13 @@ struct HomeView: View
         
         Group
         {
-          if store.exercises.isEmpty
+          if exercises.isEmpty
           {
             EmptyView()
           }
           else
           {
-            List(store.exercises)
+            List(exercises)
             {
               exercise in
               
@@ -73,8 +70,5 @@ struct HomeView: View
 
 #Preview
 {
-  // Når vi tester HomeView i Preview, må vi manuelt legge til en ExerciseStore.
-  // Dette etterligner hvordan appen gjør det i LifeStyleApp (via environmentObject).
-  // Uten denne linjen får vi feilmelding fordi HomeView krever en store fra environment.
-  HomeView().environmentObject(ExerciseStore())
+  HomeView().modelContainer(for: [Exercise.self])
 }

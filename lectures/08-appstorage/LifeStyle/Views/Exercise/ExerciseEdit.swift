@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ExerciseEdit: View
 {
@@ -13,18 +14,16 @@ struct ExerciseEdit: View
   // det gjeldende View. Du kaller bare dismiss() når du vil lukke visningen.
   @Environment(\.dismiss) private var dismiss
   
-  @Binding var exercise: Exercise
+  var exercise: Exercise
   
   @State private var title: String
   @State private var notes: String
-  @State private var level: Level
   
-  init(exercise: Binding<Exercise>)
+  init(exercise: Exercise)
   {
-    _exercise = exercise
-    _title = .init(initialValue: exercise.wrappedValue.title)
-    _notes = .init(initialValue: exercise.wrappedValue.notes)
-    _level = .init(initialValue: exercise.wrappedValue.level)
+    self.exercise = exercise
+    _title = .init(initialValue: exercise.title)
+    _notes = .init(initialValue: exercise.notes)
   }
   
   var body: some View
@@ -39,15 +38,6 @@ struct ExerciseEdit: View
         {
           TextEditor(text: $notes).frame(minHeight: 150)
         }
-        
-        Picker("Vanskelighetsgrad", selection: $level)
-        {
-          ForEach(Level.allCases)
-          {
-            level in Text(level.title).tag(level)
-          }
-        }
-        .pickerStyle(.palette)
       }
       .navigationBarTitle("Redigere 🏋️‍♀️")
       .navigationBarTitleDisplayMode(.inline)
@@ -68,7 +58,6 @@ struct ExerciseEdit: View
           {
             exercise.title = title
             exercise.notes = notes
-            exercise.level = level
             dismiss()
           }
         }
@@ -79,5 +68,5 @@ struct ExerciseEdit: View
 
 #Preview
 {
-  ExerciseEdit(exercise: .constant(exercise4))
+  ExerciseEdit()
 }
