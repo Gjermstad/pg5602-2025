@@ -33,7 +33,7 @@ struct ExerciseAdd: View
   var body: some View
   {
     // en annen måte å filtrere på om man ikke vil bruke #Predicate over
-    let filtered = categories.filter{$0.trashBin == false}
+    let filtered = categories.filter{!$0.trashBin}
     
     NavigationStack
     {
@@ -75,14 +75,6 @@ struct ExerciseAdd: View
       .navigationBarTitle("Ny 🏋️‍♀️")
       .toolbar
       {
-        ToolbarItem(placement: .cancellationAction)
-        {
-          Button("Avbryt", role: .cancel)
-          {
-            dismiss()
-          }
-        }
-        
         ToolbarItem(placement: .confirmationAction)
         {
           Button("Lagre")

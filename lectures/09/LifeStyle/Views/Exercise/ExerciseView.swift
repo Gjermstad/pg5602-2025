@@ -14,21 +14,23 @@ struct ExerciseView: View
   // Dette gjør at variabelen 'store' automatisk holder en oppdatert liste over alle Exercise-objekter
   // Listen oppdateres automatisk i UI når objekter blir lagt til, endret eller slettet
   // private gjør at listen kun kan brukes innenfor dette Viewet
-  @Query private var exercises: [ExerciseModel]
+  @Query() private var exercises: [ExerciseModel]
   
   var body: some View
   {
+    let filteredExercises = exercises.filter{!$0.trashBin}
+    
     NavigationStack
     {
       Group
       {
-        if exercises.isEmpty
+        if filteredExercises.isEmpty
         {
           EmptyView()
         }
         else
         {
-          List(exercises)
+          List(filteredExercises)
           {
             exercise in
             

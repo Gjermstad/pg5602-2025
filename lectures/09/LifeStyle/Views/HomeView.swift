@@ -20,6 +20,8 @@ struct HomeView: View
   
   var body: some View
   {
+    let filteredExercises = store.filter{!$0.trashBin}
+    
     NavigationStack
     {
       VStack
@@ -28,13 +30,13 @@ struct HomeView: View
         
         Group
         {
-          if store.isEmpty
+          if filteredExercises.isEmpty
           {
             EmptyView()
           }
           else
           {
-            List(store)
+            List(filteredExercises)
             {
               exercise in
               

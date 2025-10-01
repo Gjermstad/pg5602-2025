@@ -6,11 +6,13 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ExerciseEdit: View
 {
-  // Dismiss gir tilgang til en funksjon fra SwiftUI sitt miljø som kan lukke
-  // det gjeldende View. Du kaller bare dismiss() når du vil lukke visningen.
+  @Query(filter: #Predicate<CategoryModel>{!$0.trashBin},
+         sort: \CategoryModel.title) private var categories: [CategoryModel]
+  
   @Environment(\.dismiss) private var dismiss
   
   var exercise: ExerciseModel
@@ -56,6 +58,16 @@ struct ExerciseEdit: View
           Text("Ironman").tag(3)
         }
         .pickerStyle(.segmented)
+        
+        Picker("Velg kategori", selection: $category)
+        {
+          Text("Ingen kategori").tag(CategoryModel?.none)
+          
+          ForEach(categories)
+          {
+            category in Text(category.title).tag(CategoryModel?.some(category))
+          }
+        }
         
         Section("Notater")
         {
