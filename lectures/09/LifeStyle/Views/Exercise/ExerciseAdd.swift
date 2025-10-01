@@ -18,7 +18,8 @@ struct ExerciseAdd: View
   // @Query gjør at SwiftData automatisk henter data fra databasen.
   // Her henter vi alle Category-objektene, sortert etter tittel.
   // Resultatet lagres i variabelen 'categories' som en array av Category.
-  @Query(sort: \CategoryModel.title) var categories: [CategoryModel]
+  @Query(filter: #Predicate<CategoryModel>{$0.trashBin == false},
+         sort: \CategoryModel.title) var categories: [CategoryModel]
   
   // Dismiss gir tilgang til en funksjon fra SwiftUI sitt miljø som kan lukke
   // det gjeldende View. Du kaller bare dismiss() når du vil lukke visningen.
@@ -26,11 +27,14 @@ struct ExerciseAdd: View
   
   @State private var title = ""
   @State private var notes = ""
-  @State private var levelValue = Level.easy.rawValue
+  @State private var level = 0
   @State private var category: CategoryModel?
   
   var body: some View
   {
+    // en annen måte å filtrere på om man ikke vil bruke #Predicate over
+    let filtered = categories.filter{$0.trashBin == false}
+    
     NavigationStack
     {
       Form
@@ -42,13 +46,12 @@ struct ExerciseAdd: View
         
         Section("Vanskelighetsgrad")
         {
-          Picker("Vanskelighetsgrad", selection: $levelValue)
+          Picker("Vanskelighetsgrad", selection: $level)
           {
-            ForEach(Level.allCases)
-            {
-              level in
-              Text(level.title).tag(level)
-            }
+            Text("Enkel").tag(0)
+            Text("Middels").tag(1)
+            Text("Høy").tag(2)
+            Text("Ironman").tag(3)
           }
           .pickerStyle(.segmented)
         }
@@ -56,7 +59,7 @@ struct ExerciseAdd: View
         Picker("Velg kategori", selection: $category)
         {
           Text("Ingen kategori").tag(CategoryModel?.none)
-          ForEach(categories)
+          ForEach(filtered)
           {
             category in Text(category.title).tag(CategoryModel?.some(category))
           }
@@ -85,11 +88,11 @@ struct ExerciseAdd: View
           Button("Lagre")
           {
             // Oppretter et nytt ellement
-            let exercise = Exercise()
+            let exercise = ExerciseModel()
             
             exercise.title = title
             exercise.notes = notes
-            exercise.levelValue = levelValue
+            exercise.level = level
             
             // Legger til ellement i tabellen/array
             store.insert(exercise)

@@ -16,27 +16,25 @@ struct ExerciseEdit: View
   var exercise: ExerciseModel
   
   @State private var title: String
-  @State private var levelValue: Int
+  @State private var level: Int
   @State private var notes: String
+  @State private var category: CategoryModel?
   
   // Custom initializer for ExerciseEdit
   // Den tar imot en Binding<Exercise>, altså en "peker" til et Exercise-objekt
   init(exercise: ExerciseModel)
   {
-      // Her bruker vi underscore fordi vi må sette opp selve property-wrapperen (@Binding)
-      // '_exercise' refererer til wrapperen, mens 'exercise' uten underscore refererer til verdien.
+    // Her bruker vi underscore fordi vi må sette opp selve property-wrapperen (@Binding)
+    // '_exercise' refererer til wrapperen, mens 'exercise' uten underscore refererer til verdien.
     self.exercise = exercise
-      
-      // Setter opp en @State-variabel med en initialverdi.
-      // Vi henter ut startverdien fra bindingen med '.wrappedValue'.
-      // Når viewet starter, får 'title' altså samme verdi som exercise.title.
-      _title = State(initialValue: exercise.title)
-      
-      // Samme for 'level' – initialiseres med verdien fra exercise.level
-    _levelValue = State(initialValue: exercise.level)
-      
-      // Og for 'notes' – initialiseres med verdien fra exercise.notes
-      _notes = State(initialValue: exercise.notes)
+    
+    // Setter opp en @State-variabel med en initialverdi.
+    // Vi henter ut startverdien fra bindingen med '.wrappedValue'.
+    // Når viewet starter, får 'title' altså samme verdi som exercise.title.
+    _title = State(initialValue: exercise.title)
+    _level = State(initialValue: exercise.level)
+    _notes = State(initialValue: exercise.notes)
+    _category = State(initialValue: exercise.category)
   }
   
   var body: some View
@@ -50,13 +48,12 @@ struct ExerciseEdit: View
           TextField("Tittel", text: $title)
         }
         
-        Picker("Vanskelighetsgrad", selection: $levelValue)
+        Picker("Vanskelighetsgrad", selection: $level)
         {
-          ForEach(Level.allCases)
-          {
-            level in
-            Text(level.title).tag(level)
-          }
+          Text("Enkel").tag(0)
+          Text("Middels").tag(1)
+          Text("Høy").tag(2)
+          Text("Ironman").tag(3)
         }
         .pickerStyle(.segmented)
         
@@ -84,8 +81,9 @@ struct ExerciseEdit: View
           Button("Lagre")
           {
             exercise.title = title
-            exercise.level = levelValue
+            exercise.level = level
             exercise.notes = notes
+            exercise.category = category
             dismiss()
           }
         }
