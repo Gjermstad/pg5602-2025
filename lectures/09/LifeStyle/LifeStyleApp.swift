@@ -22,7 +22,7 @@ struct LifeStyleApp: App
       // Hovedideen med .modelContainer er å gjøre det mulig å lagre objektene dine permanent. (Persistering)
       // Uten det ville alle endringer gå tapt når appen lukkes. Når du bruker .modelContainer kan alle @Query
       // og @ModelContext i Views automatisk bruke containeren for å hente, oppdatere og persistere dataene dine.
-      MainView().modelContainer(for: [Exercise.self])
+      MainView().modelContainer(for: [ExerciseModel.self])
       
       // for: sier vi skal lage en container for denne typen modeller. Det gjør koden lesbar.
       // Du ser tydelig at containeren gjelder Exercise-modeller.

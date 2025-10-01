@@ -13,7 +13,7 @@ struct ExerciseEdit: View
   // det gjeldende View. Du kaller bare dismiss() når du vil lukke visningen.
   @Environment(\.dismiss) private var dismiss
   
-  var exercise: Exercise
+  var exercise: ExerciseModel
   
   @State private var title: String
   @State private var levelValue: Int
@@ -21,7 +21,7 @@ struct ExerciseEdit: View
   
   // Custom initializer for ExerciseEdit
   // Den tar imot en Binding<Exercise>, altså en "peker" til et Exercise-objekt
-  init(exercise: Exercise)
+  init(exercise: ExerciseModel)
   {
       // Her bruker vi underscore fordi vi må sette opp selve property-wrapperen (@Binding)
       // '_exercise' refererer til wrapperen, mens 'exercise' uten underscore refererer til verdien.
@@ -33,7 +33,7 @@ struct ExerciseEdit: View
       _title = State(initialValue: exercise.title)
       
       // Samme for 'level' – initialiseres med verdien fra exercise.level
-    _levelValue = State(initialValue: exercise.levelValue)
+    _levelValue = State(initialValue: exercise.level)
       
       // Og for 'notes' – initialiseres med verdien fra exercise.notes
       _notes = State(initialValue: exercise.notes)
@@ -84,7 +84,7 @@ struct ExerciseEdit: View
           Button("Lagre")
           {
             exercise.title = title
-            exercise.levelValue = levelValue
+            exercise.level = levelValue
             exercise.notes = notes
             dismiss()
           }

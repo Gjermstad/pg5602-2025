@@ -54,5 +54,5 @@ struct MainView: View
 
 #Preview
 {
-  MainView().modelContainer(for: [Exercise.self])
+  MainView().modelContainer(for: [ExerciseModel.self])
 }

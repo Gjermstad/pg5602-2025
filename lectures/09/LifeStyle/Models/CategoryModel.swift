@@ -8,36 +8,37 @@
 import Foundation
 import SwiftData
 
-@Model final class Category
+@Model final class CategoryModel
 {
   @Attribute(.unique) var id: UUID
   
   var title: String
   var notes: String
-  var starred: Bool
-  var archive: Bool
-  var created: Date
-  var updated: Date
+  var favorite: Bool
+  var trashBin: Bool
+  var create: Date
+  var update: Date
   
   // Relasjon til Exercise.
   // Én Category kan ha mange Exercise.
   // deleteRule: .noAction betyr at hvis kategorien slettes,
   // beholdes øvelsene i databasen (de mister bare koblingen).
+  // deleteRule: .nullify vil fjerne relasjonen til andre tabeller om slettet
   // inverse: \Exercise.category peker tilbake til motsatt side av relasjonen.
-  @Relationship(deleteRule: .noAction, inverse: \Exercise.category)
-  var Exercises: [Exercise]?
+  @Relationship(deleteRule: .nullify, inverse: \ExerciseModel.category)
+  var exercises: [ExerciseModel]?
   
   init(title: String = "Tittel", notes: String = "Notater")
   {
     id = UUID()
     self.title = title
     self.notes = notes
-    starred = false
-    archive = false
-    created = .now
-    updated = .now
+    favorite = false
+    trashBin = false
+    create = .now
+    update = .now
   }
 }
 
-let category = Category(title: "Lett", notes: "Lav intensitet, rolig tempo, lite fysisk og mental belastning.")
+let category = CategoryModel(title: "Lett", notes: "Lav intensitet, rolig tempo, lite fysisk og mental belastning.")
 

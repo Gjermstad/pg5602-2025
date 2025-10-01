@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ExerciseRow: View
 {
-  var exercise: Exercise
+  var exercise: ExerciseModel
   
   var body: some View
   {
@@ -35,7 +35,7 @@ struct ExerciseRow: View
         
         // Hvis øvelsen er merket som favoritt (starred = true),
         // vises en gul stjerne til høyre.
-        if (exercise.starred)
+        if (exercise.favorite)
         {
           Image(systemName: "star.fill")
             .font(.title)
@@ -48,7 +48,7 @@ struct ExerciseRow: View
       // Sveip til venstre → merk som favoritt
       Button
       {
-        exercise.starred.toggle()
+        exercise.favorite.toggle()
       }
       label:
       {
@@ -60,7 +60,7 @@ struct ExerciseRow: View
       // Sveip til høyre → arkiver
       Button
       {
-        exercise.archive = true
+        exercise.trashBin = true
       }
       label:
       {

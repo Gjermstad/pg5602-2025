@@ -14,7 +14,7 @@ struct HomeView: View
   // Dette gjør at variabelen 'store' automatisk holder en oppdatert liste over alle Exercise-objekter
   // Listen oppdateres automatisk i UI når objekter blir lagt til, endret eller slettet
   // private gjør at listen kun kan brukes innenfor dette Viewet
-  @Query(sort: \Exercise.created) private var store: [Exercise]
+  @Query(sort: \ExerciseModel.create) private var store: [ExerciseModel]
   
   @State private var showSheet = false
   
@@ -80,5 +80,5 @@ struct HomeView: View
 
 #Preview
 {
-  HomeView().modelContainer(for: [Exercise.self])
+  HomeView().modelContainer(for: [ExerciseModel.self])
 }

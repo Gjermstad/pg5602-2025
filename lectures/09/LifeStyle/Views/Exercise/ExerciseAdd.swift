@@ -18,7 +18,7 @@ struct ExerciseAdd: View
   // @Query gjør at SwiftData automatisk henter data fra databasen.
   // Her henter vi alle Category-objektene, sortert etter tittel.
   // Resultatet lagres i variabelen 'categories' som en array av Category.
-  @Query(sort: \Category.title) var categories: [Category]
+  @Query(sort: \CategoryModel.title) var categories: [CategoryModel]
   
   // Dismiss gir tilgang til en funksjon fra SwiftUI sitt miljø som kan lukke
   // det gjeldende View. Du kaller bare dismiss() når du vil lukke visningen.
@@ -27,7 +27,7 @@ struct ExerciseAdd: View
   @State private var title = ""
   @State private var notes = ""
   @State private var levelValue = Level.easy.rawValue
-  @State private var category: Category?
+  @State private var category: CategoryModel?
   
   var body: some View
   {
@@ -55,10 +55,10 @@ struct ExerciseAdd: View
         
         Picker("Velg kategori", selection: $category)
         {
-          Text("Ingen kategori").tag(Category?.none)
+          Text("Ingen kategori").tag(CategoryModel?.none)
           ForEach(categories)
           {
-            category in Text(category.title).tag(Category?.some(category))
+            category in Text(category.title).tag(CategoryModel?.some(category))
           }
         }
         .pickerStyle(.menu)

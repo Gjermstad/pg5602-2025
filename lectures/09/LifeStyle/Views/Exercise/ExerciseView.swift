@@ -14,7 +14,7 @@ struct ExerciseView: View
   // Dette gjør at variabelen 'store' automatisk holder en oppdatert liste over alle Exercise-objekter
   // Listen oppdateres automatisk i UI når objekter blir lagt til, endret eller slettet
   // private gjør at listen kun kan brukes innenfor dette Viewet
-  @Query private var exercises: [Exercise]
+  @Query private var exercises: [ExerciseModel]
   
   var body: some View
   {
@@ -66,5 +66,5 @@ struct ExerciseView: View
 
 #Preview
 {
-  ExerciseView().modelContainer(for: [Exercise.self])
+  ExerciseView().modelContainer(for: [ExerciseModel.self])
 }

@@ -18,41 +18,13 @@ import Foundation
 // Definere relasjoner mellom objekter. Automatisere synkronisering mellom brukergrensesnittet og databasen.
 import SwiftData
 
-// Enum representerer vanskelighetsgrad til ExerciseStore
-// Hver case får automatisk verdi, easy = 0, medium = 1, hard = 2
-// CaseIterable lar deg hente Level.allCases (brukes i ForEach/Picker).
-// Identifiable + id gjør enumen brukbar i SwiftUI-lister.
-// title gir deg en bruker-vennlig tekst i stedet for å vise rawValue.
-enum Level: Int, CaseIterable, Identifiable
-{
-  case easy = 0
-  case medium = 1
-  case hard = 2
-  
-  // Identifiable krever en unik id
-  // Her brukes enumens råverdi (Int) som ID
-  var id: Int { rawValue }
-  
-  // Gir en pen tekst til UI
-  // Returnerer en streng basert på hvilket case som er valgt
-  var title: String
-  {
-    switch self
-    {
-      case .easy: "Enkel"
-      case .medium: "Middels"
-      case .hard: "Hard"
-    }
-  }
-}
-
 // @Model: Dette markerer klassen som en SwiftData-modell. Objektet kan dermed persisteres, dvs.
 // lagres permanent i en lokal database, slik at dataene ikke går tapt når appen lukkes.
 // Exercise-modellen representerer en treningsøvelse som lagres i databasen ved hjelp av SwiftData.
 // Når vi skriver @Model foran klassen, forteller vi SwiftData at dette er en type som skal kunne
 // lagres, hentes og oppdateres i en database, uten at vi trenger å skrive SQL selv.
 
-@Model final class Exercise
+@Model final class ExerciseModel
 {
   // id er en unik identifikator for hver Exercise.
   // @Attribute(.unique) betyr at verdien må være unik – ingen to Exercise-objekter
@@ -61,55 +33,36 @@ enum Level: Int, CaseIterable, Identifiable
   
   var title: String
   var notes: String
-  var levelValue: Int
+  var level: Int
   
   // Relasjon tilbake til Category.
   // Dette fullfører koblingen til Category.Exercises.
   // Én Exercise kan bare ha ÉN Category.
-  var category: Category?
+  var category: CategoryModel?
   
-  var starred: Bool
-  var archive: Bool
-  var created: Date
-  var updated: Date
-  
-  // Computed property gir deg en type-sikker enum basert på lagret Int-verdi.
-  // Denne brukes i UI og logikk, mens selve verdien lagres som levelValue i databasen.
-  var level: Level
-  {
-    // Når du henter verdien fra exercise.level, kjøres denne get-blokken.
-    // Den forsøker å lage en Level-enum fra levelValue, som er en Int.
-    // Hvis 'levelValue' ikke matcher noen case, returneres .easy som standard.
-    get
-    {
-      Level(rawValue: levelValue) ?? .easy
-    }
-    
-    // Når du setter exercise.level = .hard, kjøres denne set-blokken.
-    // Den oversetter enumen til en Int og lagrer den i levelValue.
-    set(newValue)
-    {
-      levelValue = newValue.rawValue
-    }
-  }
+  var favorite: Bool
+  var trashBin: Bool
+  var create: Date
+  var update: Date
   
   // Når vi lager et nytt Exercise-objekt, sørger init for at alle egenskapene
   // som tittel, notater, dato og ID – får riktige startverdier. Noen av disse
   // verdiene kan vi selv bestemme, mens andre blir automatisk satt, som for eksempel
   // en unik ID og tidspunktet for når objektet ble opprettet.
+  // Siden category kan være tom trenger ikke den å være med i init
   init(title: String = "Tittel", notes: String = "Notater")
   {
     id = UUID()
     self.title = title
     self.notes = notes
-    levelValue = Level.easy.rawValue
-    starred = false
-    archive = false
-    created = .now
-    updated = .now
+    level = 0
+    favorite = false
+    trashBin = false
+    create = .now
+    update = .now
   }
 }
 
 // Eksempeldata – brukes til å fylle appen med innhold i starten.
 // Dette er nyttig både for testing og for forhåndsvisning i SwiftUI.
-let exercise = Exercise(title: "Løping", notes: "15 kilometer med intervaller.")
+let exercise = ExerciseModel(title: "Løping", notes: "15 kilometer med intervaller.")
