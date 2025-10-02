@@ -26,7 +26,7 @@ enum TaskStatus: Int, Codable
 {
   var id: UUID
   var title: String
-  var notes: String?
+  var notes: String
   var createdAt: Date
   var dueDate: Date?
   var priority: TaskPriority
@@ -36,7 +36,7 @@ enum TaskStatus: Int, Codable
   
   var category: CategoryModel?
   
-  init(title: String, notes: String? = nil)
+  init(title: String, notes: String = "")
   {
     self.id = UUID()
     self.title = title
