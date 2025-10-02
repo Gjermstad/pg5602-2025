@@ -8,52 +8,55 @@
 import SwiftData
 import SwiftUI
 
-struct MainView: View
-{
+struct MainView: View {
   // Knytter oss til tabellen TaskModel, @Query er kun readonly, enveis
-  @Query private var tasks: [TaskModel]
-  
+  @Query(sort: \TaskModel.title) private var tasks: [TaskModel]
+
   // gir oss tilgang til databasen så vi kan skrive til den, vanlig å kalle den context
   @Environment(\.modelContext) private var context
-  
+
   var body: some View
   {
     NavigationStack
     {
-      List
+      List(tasks)
       {
-        Button("Ny oppgave")
+        task in
+
+        NavigationLink
         {
-          let newTask = TaskModel(title: "Ny oppgave \(Date().formatted(date: .omitted, time: .standard))")
-          newTask.notes = "Her kommer notater"
-          newTask.dueDate = Date().addingTimeInterval(60*60*24)
-          
-          context.insert(newTask)
+          TaskEdit(task: task)
         }
-        .buttonStyle(.borderedProminent)
-        
-        ForEach(tasks)
-        {
-          task in
-          
-          NavigationLink()
-          {
-            
-          }
         label:
-          {
+        {
+          // TaskRow()
+          VStack{
             Text(task.title)
+            Text(task.dueDate?.description ?? "Ingen DUE DATE")
           }
         }
       }
       .navigationTitle("Oppgaver")
       .listStyle(.plain)
+      .toolbar
+      {
+        ToolbarItem(placement: .topBarTrailing)
+        {
+          NavigationLink
+          {
+            TaskAdd()
+          }
+        label:
+          {
+            Image(systemName: "plus.circle.fill").font(.title)
+          }
+        }
+      }
     }
   }
 }
 
-#Preview
-{
+#Preview {
   // Vi må injisere databasen TaskModel for at preview skal ha tilgang
   MainView().modelContainer(for: TaskModel.self)
 }
