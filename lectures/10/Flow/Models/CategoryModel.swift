@@ -14,6 +14,7 @@ import SwiftData
   var name: String
   var notes: String?
   
+  // .cascade gjør at slettes en kategori så slettes alle relasjonstabeller til kategorien
   @Relationship(deleteRule: .cascade, inverse: \TaskModel.category)
   var tasks: [TaskModel]
   
@@ -22,6 +23,7 @@ import SwiftData
     self.id = UUID()
     self.name = name
     self.notes = notes
+    // Vi starter med et tomt array for tasks fra oppstart
     self.tasks = []
   }
 }

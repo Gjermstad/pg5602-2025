@@ -14,6 +14,7 @@ import SwiftUI
   {
     WindowGroup
     {
+      // Vi injiserer databasen så den er tilgjengelig i hele appen
       MainView().modelContainer(for: TaskModel.self)
     }
   }
