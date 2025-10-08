@@ -55,8 +55,3 @@ git commit -m "L03: end"
 git tag l03-end
 git push && git push --tags
 ```
-
-
-Kort sagt:
-- `Package.resolved` → commit ✅  
-- `Pods/` → ignorér som student, men commit hvis sensor/prosjekt krever det.
