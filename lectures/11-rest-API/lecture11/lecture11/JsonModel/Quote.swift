@@ -7,7 +7,7 @@
 
 import Foundation
 
-// Vi kunne brukt Identifiable istedenfor Hashable og lagt til et ID-felt ala: var id: UUID = UUID()
+// Vi kunne brukt Identifiable istedenfor Hashable og lagt til et ID-felt ala: "var id: UUID = UUID()"
 struct Quote: Decodable, Hashable
 {
   let quote: String
