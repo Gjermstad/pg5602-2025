@@ -10,7 +10,6 @@ import SwiftUI
 struct MainView: View
 {
   @State private var quotes: [Quote] = []
-  @State var counter = 0
   
   // eksempel på en tuple i Swift. Vi kan få tak i data med student.name og student.adress
   // let student = (name: "Stig", adress: "Bergen")
@@ -19,13 +18,21 @@ struct MainView: View
   {
     NavigationStack
     {
-      List(quotes, id: \.self)
-      {
-        quote in Text("\(quote.quote)")
+      List(Array(quotes.enumerated()), id: \.element)
+      { index, quote in
+        VStack(alignment: .leading, spacing: 4)
+        {
+          Text("Quote \(index + 1): \"\(quote.quote)\"")
+            .font(.headline)
+          Text("- \(quote.author)")
+            .font(.subheadline)
+            .foregroundColor(.secondary)
+        }
+        .padding(.vertical, 4)
       }
-      .listStyle(.plain)
-      .navigationTitle("Breaking Bad")
-      .toolbar
+        .listStyle(.plain)
+        .navigationTitle("Breaking Bad")
+        .toolbar
       {
         ToolbarItem(placement: .topBarTrailing)
         {
