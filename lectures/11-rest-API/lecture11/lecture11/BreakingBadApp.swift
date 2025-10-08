@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct lecture11App: App
+struct BreakingBadApp: App
 {
   var body: some Scene
   {
