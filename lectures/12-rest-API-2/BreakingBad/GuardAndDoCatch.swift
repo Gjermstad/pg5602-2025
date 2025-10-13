@@ -7,7 +7,7 @@
 
 /*
  
- 🧭 1. guard
+ 🧭 1. guard 
 
  Formål: Sjekker forventede betingelser tidlig i koden — og “bryter ut” dersom noe ikke stemmer.
 

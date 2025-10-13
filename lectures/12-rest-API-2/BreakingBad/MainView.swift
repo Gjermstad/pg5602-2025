@@ -6,7 +6,7 @@
 //  Created by Stig Orla Sørli Højklint on 08/10/2025.
 //
 
-import SwiftUI
+import SwiftUI 
 
 struct MainView: View
 {

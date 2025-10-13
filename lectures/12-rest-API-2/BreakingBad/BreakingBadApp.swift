@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-@main struct BreakingBadApp: App
+@main struct BreakingBadApp: App 
 {
   var body: some Scene
   {

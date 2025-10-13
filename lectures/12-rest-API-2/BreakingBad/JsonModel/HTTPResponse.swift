@@ -12,7 +12,7 @@
 // 204 No Content: The request was successful, but there’s no content in the response
 // 206 Partial Content: Used for downloads that support partial requests
 
-// ⚠️ 3xx Series – Redirection Responses
+// ⚠️ 3xx Series – Redirection Responses 
 // 300 Multiple Choices: Multiple resources and the client must select one
 // 301 Moved Permanently: The resource has been permanently moved to a new URL
 // 302 Found: The resource is temporarily located at a different URL

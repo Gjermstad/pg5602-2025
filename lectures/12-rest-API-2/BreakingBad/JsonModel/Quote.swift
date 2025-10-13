@@ -47,13 +47,14 @@ func getQuotes(number: Int) async -> [Quote]
   do
   {
     // Prøver å laste ned data fra serveren
+    // URLSession returnerer en tupple (to verdier)
     let (data, response) = try await URLSession.shared.data(from: connection)
     
     /*
-    I Swift kan du bruke et komma i en if-setning til å lage en kombinert betingelse.
-    Når du bruker et komma på denne måte, evalueres hver del af if-setningen i rekkefølge,
-    og if-blokken kjøres bare dersom alle forhold er sann.
-    */
+     I Swift kan du bruke et komma i en if-setning til å lage en kombinert betingelse.
+     Når du bruker et komma på denne måte, evalueres hver del af if-setningen i rekkefølge,
+     og if-blokken kjøres bare dersom alle forhold er sann.
+     */
     
     // Undersøker om httpResponse er ulik NIL og sjekker deretter om statuskode er mellom 200 og 299
     // Men for å få tilgang til statuskode (200, 404, 500 osv.), må du typekonvertere den til HTTPURLResponse.
@@ -70,6 +71,7 @@ func getQuotes(number: Int) async -> [Quote]
       print(String(data: data, encoding: .utf8) ?? "Ingen JSON-tekst")
       
       // Dekoder data i samsvar med tabellstruktur og returnerer artiklene
+      // JSONDecoder kan kaste en feil, derfor vi legger til en `try`
       return try JSONDecoder().decode([Quote].self, from: data)
     }
   }
