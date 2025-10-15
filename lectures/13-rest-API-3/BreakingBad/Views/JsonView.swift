@@ -31,7 +31,7 @@ struct JsonView: View
           {
             Task
             {
-              quotes = await fetchQuotes(numberOfQuotes: numberOfQuotes)
+              quotes = await fetchQuotes(number: numberOfQuotes)
             }
           }
           label:
@@ -55,6 +55,25 @@ struct JsonView: View
           .padding()
           .background(gradient)
           .cornerRadius(15)
+          .swipeActions(edge: .leading, allowsFullSwipe: false)
+          {
+            Button()
+            {
+              // Lagrer en kopi av quote så den kan lagres i DataView
+              let quote = QuoteModel(quote: row.quote, author: row.author)
+              context.insert(quote)
+              
+              let quoteToDelete = quotes.firstIndex(where: {$0.id == row.id})
+              
+              withAnimation {
+                quotes.remove(at: quoteToDelete!) // med ! på slutten garanterer vi at det finnes en verdi på variablen quoteToDelete
+              }
+            }
+          label:
+            {
+              Image(systemName: "square.and.arrow.down.fill").tint(.green)
+            }
+          }
         }
       }
       .listStyle(.plain)

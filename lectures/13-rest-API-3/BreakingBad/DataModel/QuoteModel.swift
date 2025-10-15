@@ -10,7 +10,7 @@ import SwiftData
 
 @Model final class QuoteModel
 {
-  @Attribute(.unique) var id = UUID()
+  var id = UUID()
   var quote: String
   var author: String
   

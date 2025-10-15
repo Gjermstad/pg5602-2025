@@ -23,10 +23,10 @@ struct Quote: Decodable, Identifiable
 // ⚠️ Henter sitater fra API Server
 //
 
-func fetchQuotes(numberOfQuotes: Int) async -> [Quote]
+func fetchQuotes(number: Int) async -> [Quote]
 {
   // Setter sammen URL-en til API-endepunktet
-  let url = "https://api.breakingbadquotes.xyz/v1/quotes/\(numberOfQuotes)"
+  let url = "https://api.breakingbadquotes.xyz/v1/quotes/\(number)"
   print("🛜 \(url)")
   
   // Prøver å få kontakt med API Server
