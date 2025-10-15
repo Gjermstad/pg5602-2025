@@ -65,7 +65,7 @@ struct JsonView: View
               
               let quoteToDelete = quotes.firstIndex(where: {$0.id == row.id})
               
-              withAnimation {
+              _ = withAnimation {
                 quotes.remove(at: quoteToDelete!) // med ! på slutten garanterer vi at det finnes en verdi på variablen quoteToDelete
               }
             }

@@ -11,6 +11,7 @@ import SwiftData
 struct DataView: View
 {
   @Query private var quotes: [QuoteModel]
+  @Environment(\.modelContext) private var context
   
   var body: some View
   {
@@ -36,6 +37,17 @@ struct DataView: View
               {
                 Text(row.quote)
                 Text(row.author).font(.caption)
+              }
+              .swipeActions(edge: .trailing, allowsFullSwipe: false)
+              {
+                Button
+                {
+                  context.delete(row)
+                }
+              label:
+                {
+                  Image(systemName: "trash.fill").tint(.red)
+                }
               }
               .padding()
               .background(gradient)
