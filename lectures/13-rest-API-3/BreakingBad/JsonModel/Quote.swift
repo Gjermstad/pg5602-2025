@@ -70,4 +70,3 @@ func fetchQuotes(number: Int) async -> [Quote]
   
   return []
 }
-
