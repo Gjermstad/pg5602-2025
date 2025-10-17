@@ -9,12 +9,16 @@ import SwiftUI
 
 struct MainView: View
 {
+  @State private var response = QuizResponse(responseCode: -999, results: [])
+  @State private var responseCode: Int = -999
   @State private var questions = [QuizQuestion]()
   
   var body: some View
   {
     NavigationStack
     {
+      Text("Kode: \(responseCode)")
+      
       List(questions)
       {
         row in
@@ -33,7 +37,10 @@ struct MainView: View
           {
             Task
             {
-              questions = await fetchQuiz()
+              response = await fetchQuiz(amount: 10, category: 15)
+              
+              responseCode = response.responseCode
+              questions = response.results
             }
           }
         label:

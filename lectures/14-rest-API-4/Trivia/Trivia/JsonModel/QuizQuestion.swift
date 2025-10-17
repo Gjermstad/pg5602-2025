@@ -44,17 +44,29 @@ struct QuizQuestion: Decodable, Identifiable
 // ⚠️ Henter spørsmål fra API server
 //
 
-func fetchQuiz() async -> [QuizQuestion]
+func fetchQuiz(amount: Int, category: Int = 15) async -> QuizResponse
 {
   // Setter sammen URL-en til API-endepunktet
-  let url = "https://opentdb.com/api.php?amount=10"
-  print("🛜 \(url)")
+  var url = "https://opentdb.com/api.php"
+  
+  if amount < 1
+  {
+    url += "?amount=5"
+  }
+  else
+  {
+    url += "?amount=\(amount)"
+  }
+  
+  url += "&category=\(category)"
+  
+  print("🛜 URL: \(url)")
   
   // Prøver å få kontakt med API Server
   guard let connection = URL(string: url) else
   {
     print("⚠️ Ugyldig URL, kan ikke koble til server.")
-    return [QuizQuestion]()
+    return QuizResponse(responseCode: -666, results: [])
   }
   
   do
@@ -77,18 +89,27 @@ func fetchQuiz() async -> [QuizQuestion]
       else
       {
         print("⚠️ Serveren svarte med feilkode: \(status)\n")
-        return [QuizQuestion]()
+        return QuizResponse(responseCode: -555, results: [])
       }
     }
     
     // Prøver å dekode data fra API Server - vi sier vi kun ønsker results fra QuizResponse
-    return try JSONDecoder().decode(QuizResponse.self, from: data).results
+    return try JSONDecoder().decode(QuizResponse.self, from: data)
   }
   catch
   {
     print ("⚠️ Beklager! Feil ved nedlasting eller dekoding av data: \(error.localizedDescription)\n")
   }
   
-  return [QuizQuestion]()
+  return QuizResponse(responseCode: -444, results: [])
 }
 
+// liten hjelpefunksjon for å “unescape” HTML
+func htmlDecoded(_ s: String) -> String {
+  (try? NSAttributedString(
+    data: Data(s.utf8),
+    options: [.documentType: NSAttributedString.DocumentType.html,
+              .characterEncoding: String.Encoding.utf8.rawValue],
+    documentAttributes: nil
+  ).string) ?? s
+}
