@@ -12,16 +12,30 @@ struct MapView: View
 {
   // Henter ut context databasen hvor vi la plassene
   @EnvironmentObject private var placeStore: PlaceStore
-  @State private var position: MapCameraPosition = .automatic
   
+  // Her lager vi to forskjellige posisjoner vi kan bruke som startpunkt når kartet vises
+  @State private var position1: MapCameraPosition = .automatic
+  @State private var position2: MapCameraPosition
+
   @State private var showConfig = false
   @State private var showSearch = false
+  
+  init()
+  {
+    let center = CLLocationCoordinate2D(latitude: 63.4317, longitude: 10.395)
+    // For span bør både latitude og longitude være det samme
+    let span = MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5)
+    let region = MKCoordinateRegion(center: center, span: span)
+    
+    _position2 = State(initialValue: MapCameraPosition.region(region))
+  }
   
   var body: some View
   {
     ZStack
     {
-      Map(position: $position)
+      // Her velger vi hvilken av de to startposisjonene kartet skal bruke
+      Map(position: $position2)
       {
         ForEach(placeStore.places)
         {
@@ -78,11 +92,22 @@ struct MapView: View
     }
     .sheet(isPresented: $showConfig)
     {
-      
+      VStack
+      {
+        Button("Norske byer", action: placeStore.addCities)
+        Button("Avinor flyplasser", action: placeStore.addAvinor)
+        Button("GA flyplasser", action: placeStore.addNonAvinor)
+      }
+      .presentationDetents([.fraction(0.25)])
+      .buttonStyle(.glassProminent)
     }
     .sheet(isPresented: $showSearch)
     {
-      
+      VStack
+      {
+        
+      }
+      .presentationDetents([.fraction(0.3)])
     }
   }
 }
