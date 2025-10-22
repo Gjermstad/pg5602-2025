@@ -9,11 +9,13 @@ import SwiftUI
 
 @main struct AtlasApp: App
 {
+  @StateObject var places = PlaceStore()
+  
   var body: some Scene
   {
     WindowGroup
     {
-      MainView()
+      MainView().environmentObject(places)
     }
   }
 }

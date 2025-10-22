@@ -24,6 +24,39 @@ struct Place: Identifiable
 }
 
 //
+// Klasse som inneholder array/tabell
+//
+
+final class PlaceStore: ObservableObject
+{
+  @Published var places: [Place]
+  
+  init()
+  {
+    places = []
+  }
+  
+  func addCities()
+  {
+    places.removeAll()
+    // contentsOf brukes når du skal legge til et helt array med data og ikke bare et enkelt objekt/datapunkt
+    places.append(contentsOf: norwegianCities)
+  }
+  
+  func addAvinor()
+  {
+    places.removeAll()
+    places.append(contentsOf: avinorAirports)
+  }
+  
+  func addNonAvinor()
+  {
+    places.removeAll()
+    places.append(contentsOf: nonAvinorAirports)
+  }
+}
+
+//
 // ⚠️ Norske byer
 //
 let norwegianCities: [Place] =
