@@ -33,7 +33,7 @@ final class PlaceStore: ObservableObject
   
   init()
   {
-    places = []
+    places = avinorAirports
   }
   
   func addCities()
