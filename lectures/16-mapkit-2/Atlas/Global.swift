@@ -31,11 +31,27 @@ struct myModifier: ViewModifier
 
 // Utvider CLLocationCoordinate2D med egne statiske koordinater
 // static let brukes slik at du kan kalle dem direkte uten å opprette et objekt:
-
+extension CLLocationCoordinate2D
+{
+  // Setter et koordinat som skal være midtpunktet på kartet (Trondheim i dette tilfellet)
+  static let trondheim = CLLocationCoordinate2D(latitude: 63.431, longitude: 10.395)
+}
 
 // Utvider enum Category med en beregnet egenskap (computed property)
 // som returnerer et passende SF Symbol og en farge til bruk i UI-et.
-
+extension Category
+{
+  var symbol: (String, Color)
+  {
+    // switch self betyr at den går mot seg selv, altså enumet Category i PlaceStore
+    switch self
+    {
+      case .city: return ("house.fill", Color.brown)
+      case .avinor: return ("airplane", Color.red)
+      case .nonAvinor: return ("paperplane.fill", Color.green)
+    }
+  }
+}
 
 //
 // ⚠️ Norske byer
@@ -108,24 +124,24 @@ let avinorAirports: [Place] =
 //
 let nonAvinorAirports: [Place] =
 [
-  Place(name: "Sandefjord lufthavn Torp", category: .nonavinor, lat: 59.1867, lon: 10.2586), // Drevet av Sandefjord lufthavn AS
-  Place(name: "Oslo lufthavn Rygge (stengt)", category: .nonavinor, lat: 59.3788, lon: 10.7856), // Tidligere kommersiell, nå militær
-  Place(name: "Notodden flyplass", category: .nonavinor, lat: 59.5656, lon: 9.2122), // Kommunal, brukt til skoleflyging
-  Place(name: "Geiteryggen flyplass (Skien)", category: .nonavinor, lat: 59.1850, lon: 9.5667), // Kommunal, tidligere kommersiell
-  Place(name: "Jarlsberg flyplass (Tønsberg)", category: .nonavinor, lat: 59.2933, lon: 10.3761), // Privat, flyklubb
-  Place(name: "Eggemoen Aviation & Technology Park", category: .nonavinor, lat: 60.2183, lon: 10.3511), // Privat, teknologipark
-  Place(name: "Stord lufthavn Sørstokken", category: .nonavinor, lat: 59.7919, lon: 5.3408), // Drevet av Stord lufthavn AS
-  Place(name: "Fagernes lufthavn Leirin", category: .nonavinor, lat: 60.8756, lon: 9.0606), // Tidligere Avinor, nå kommunal
-  Place(name: "Kjeller flyplass", category: .nonavinor, lat: 59.9700, lon: 11.0500), // Militær og flyhistorisk
-  Place(name: "Fornebu (nedlagt)", category: .nonavinor, lat: 59.8897, lon: 10.6178), // Historisk, nå byutvikling
-  Place(name: "Slemmestad sjøflyhavn", category: .nonavinor, lat: 59.7833, lon: 10.5000), // Vannflyplass
-  Place(name: "Elverum flyplass Starmoen", category: .nonavinor, lat: 60.8800, lon: 11.6200), // Flyklubb og skoleflyging
-  Place(name: "Rakkestad flyplass", category: .nonavinor, lat: 59.4600, lon: 11.3400), // Privat, flyklubb
-  Place(name: "Hamar flyplass (Stafsberg)", category: .nonavinor, lat: 60.8183, lon: 11.0675), // Kommunal, GA
-  Place(name: "Bømoen flyplass (Voss)", category: .nonavinor, lat: 60.6333, lon: 6.4833), // Fallskjerm og GA
-  Place(name: "Oppdal flyplass", category: .nonavinor, lat: 62.5833, lon: 9.7000), // GA og fjellflyging
-  Place(name: "Reinsvoll flyplass", category: .nonavinor, lat: 60.6667, lon: 10.6333), // Flyklubb
-  Place(name: "Sola sjøflyhavn", category: .nonavinor, lat: 58.8750, lon: 5.6350), // Vannflyplass
-  Place(name: "Værøy heliport", category: .nonavinor, lat: 67.6667, lon: 12.6833) // Helikopterrute, ikke Avinor
+  Place(name: "Sandefjord lufthavn Torp", category: .nonAvinor, lat: 59.1867, lon: 10.2586), // Drevet av Sandefjord lufthavn AS
+  Place(name: "Oslo lufthavn Rygge (stengt)", category: .nonAvinor, lat: 59.3788, lon: 10.7856), // Tidligere kommersiell, nå militær
+  Place(name: "Notodden flyplass", category: .nonAvinor, lat: 59.5656, lon: 9.2122), // Kommunal, brukt til skoleflyging
+  Place(name: "Geiteryggen flyplass (Skien)", category: .nonAvinor, lat: 59.1850, lon: 9.5667), // Kommunal, tidligere kommersiell
+  Place(name: "Jarlsberg flyplass (Tønsberg)", category: .nonAvinor, lat: 59.2933, lon: 10.3761), // Privat, flyklubb
+  Place(name: "Eggemoen Aviation & Technology Park", category: .nonAvinor, lat: 60.2183, lon: 10.3511), // Privat, teknologipark
+  Place(name: "Stord lufthavn Sørstokken", category: .nonAvinor, lat: 59.7919, lon: 5.3408), // Drevet av Stord lufthavn AS
+  Place(name: "Fagernes lufthavn Leirin", category: .nonAvinor, lat: 60.8756, lon: 9.0606), // Tidligere Avinor, nå kommunal
+  Place(name: "Kjeller flyplass", category: .nonAvinor, lat: 59.9700, lon: 11.0500), // Militær og flyhistorisk
+  Place(name: "Fornebu (nedlagt)", category: .nonAvinor, lat: 59.8897, lon: 10.6178), // Historisk, nå byutvikling
+  Place(name: "Slemmestad sjøflyhavn", category: .nonAvinor, lat: 59.7833, lon: 10.5000), // Vannflyplass
+  Place(name: "Elverum flyplass Starmoen", category: .nonAvinor, lat: 60.8800, lon: 11.6200), // Flyklubb og skoleflyging
+  Place(name: "Rakkestad flyplass", category: .nonAvinor, lat: 59.4600, lon: 11.3400), // Privat, flyklubb
+  Place(name: "Hamar flyplass (Stafsberg)", category: .nonAvinor, lat: 60.8183, lon: 11.0675), // Kommunal, GA
+  Place(name: "Bømoen flyplass (Voss)", category: .nonAvinor, lat: 60.6333, lon: 6.4833), // Fallskjerm og GA
+  Place(name: "Oppdal flyplass", category: .nonAvinor, lat: 62.5833, lon: 9.7000), // GA og fjellflyging
+  Place(name: "Reinsvoll flyplass", category: .nonAvinor, lat: 60.6667, lon: 10.6333), // Flyklubb
+  Place(name: "Sola sjøflyhavn", category: .nonAvinor, lat: 58.8750, lon: 5.6350), // Vannflyplass
+  Place(name: "Værøy heliport", category: .nonAvinor, lat: 67.6667, lon: 12.6833) // Helikopterrute, ikke Avinor
 ]
 

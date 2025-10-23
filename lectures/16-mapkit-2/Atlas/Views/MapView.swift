@@ -13,58 +13,38 @@ struct MapView: View
   @EnvironmentObject private var placeStore: PlaceStore
   @State private var position1: MapCameraPosition = .automatic
   @State private var position2: MapCameraPosition
-
+  
   @State private var showConfig = false
   @State private var showSearch = false
-
+  
   init()
   {
-    // Setter et koordinat som skal være midtpunktet på kartet (Trondheim i dette tilfellet)
-    let center = CLLocationCoordinate2D(latitude: 63.431, longitude: 10.395)
-
     // Definerer hvor "zoomet inn" kartet skal være.
     // latitudeDelta og longitudeDelta bestemmer hvor mye av kartet som vises.
     let span = MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5)
-
+    
     // Lager en region som kombinerer midtpunkt og zoomnivå
-    let region = MKCoordinateRegion(center: center, span: span)
-
+    let region = MKCoordinateRegion(center: .trondheim, span: span)
+    
     // Initialiserer State-variabelen med en MapCameraPosition basert på regionen
     // Dette gjør at kartet starter med denne posisjonen når viewet vises.
     _position2 = State(initialValue: MapCameraPosition.region(region))
   }
-
+  
   var body: some View
   {
-    ZStack
+    // Om du ikke legger inn posisjon i Map() (f.eks. Map(position: position2)) vil kartet automatisk vise alle punkter
+    Map()
     {
-      Map(position: $position2)
+      ForEach(placeStore.places)
       {
-        ForEach(placeStore.places)
-        {
-          place in
-
-          let coordinate = CLLocationCoordinate2D(latitude: place.lat, longitude: place.lon)
-          Marker(place.name, coordinate: coordinate)
-        }
+        place in
+        
+        let coordinate = CLLocationCoordinate2D(latitude: place.lat, longitude: place.lon)
+        Marker(place.name, coordinate: coordinate)
       }
-      .ignoresSafeArea()
-
-      VStack
-      {
-        Spacer()
-
-        Button
-        {
-        }
-      label:
-        {
-          Image(systemName: "location.fill").modifier(myModifier())
-        }
-        .padding()
-      }
-      .frame(maxWidth: .infinity, alignment: .trailing)
     }
+    .ignoresSafeArea()
     .toolbar
     {
       ToolbarItem(placement: .topBarLeading)
@@ -78,7 +58,7 @@ struct MapView: View
           Image(systemName: "line.3.horizontal")
         }
       }
-
+      
       ToolbarItem(placement: .topBarTrailing)
       {
         Button
@@ -106,7 +86,7 @@ struct MapView: View
     {
       VStack
       {
-
+        
       }
       .presentationDetents([.fraction(0.3)])
     }

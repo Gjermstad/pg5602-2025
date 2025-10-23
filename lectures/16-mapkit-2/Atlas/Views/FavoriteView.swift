@@ -9,8 +9,16 @@ import SwiftUI
 
 struct FavoriteView: View
 {
+  @EnvironmentObject private var places: PlaceStore
+  
   var body: some View
   {
+    List(places.places)
+    {
+      place in Text(place.name)
+    }
+    .navigationTitle("Favoritter")
+    .listStyle(.plain)
   }
 }
 
@@ -18,6 +26,6 @@ struct FavoriteView: View
 {
   NavigationStack
   {
-    FavoriteView()
+    FavoriteView().environmentObject(PlaceStore())
   }
 }
