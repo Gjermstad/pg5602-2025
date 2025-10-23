@@ -14,6 +14,11 @@ struct MapView: View
   @State private var position1: MapCameraPosition = .automatic
   @State private var position2: MapCameraPosition
   
+  // Oppretter en instans av CLLocationManager
+  // CLLocationManager brukes for å få tilgang til enhetens
+  // posisjon (GPS) og for å håndtere andre tjenester som heading.
+  let locationManager = CLLocationManager()
+  
   @State private var showConfig = false
   @State private var showSearch = false
   
@@ -41,10 +46,30 @@ struct MapView: View
         place in
         
         let coordinate = CLLocationCoordinate2D(latitude: place.lat, longitude: place.lon)
-        Marker(place.name, coordinate: coordinate)
+        
+        Annotation(place.name, coordinate: coordinate)
+        {
+          VStack
+          {
+            let (icon, color) = place.category.symbol
+            
+            Image(systemName: icon)
+              .foregroundStyle(color)
+          }
+        }
       }
+      
+      UserAnnotation()
     }
-    .ignoresSafeArea()
+    .mapControls
+    {
+      MapUserLocationButton()
+      MapCompass()
+    }
+    .onAppear
+    {
+      locationManager.requestWhenInUseAuthorization()
+    }
     .toolbar
     {
       ToolbarItem(placement: .topBarLeading)
