@@ -21,7 +21,7 @@ struct MapView: View
   @State private var showSearch = false
   @State private var showPlace = false
   
-  let span: MKCoordinateSpan      // Definerer hvor "zoomet inn" kartet skal være.
+  let span: MKCoordinateSpan     // Definerer hvor "zoomet inn" kartet skal være.
   let region: MKCoordinateRegion  // Lager en region som kombinerer midtpunkt og zoomnivå
   @State private var position: MapCameraPosition
   
@@ -59,6 +59,7 @@ struct MapView: View
         {
           VStack
           {
+            // legger til at når man trykke på kartpunkt så settes selectedPlace
             Image(systemName: icon).foregroundColor(color).onTapGesture
             {
               selectedPlace = place
@@ -74,6 +75,7 @@ struct MapView: View
       }
       
       // Denne viser brukerens nåværende posisjon
+      // UserAnnotation er den blå prikken som viser brukerens posisjon på kartet
       UserAnnotation
       {
         Image(systemName: "dot.scope").modifier(pinStyle())
@@ -123,8 +125,10 @@ struct MapView: View
         Button("Norske byer")
         {
           placeStore.addCities()
+          // Lukker sheet automatisk
           showConfig = false
           
+          // Om region har en verdi (zoomToFit ikke returnerer nil) så zoomer kartet ut
           if let region = placeStore.zoomToFit()
           {
             withAnimation(.easeInOut(duration: 1.0))
@@ -137,8 +141,10 @@ struct MapView: View
         Button("Avinor flyplasser")
         {
           placeStore.addAvinor()
+          // Lukker sheet automatisk
           showConfig = false
           
+          // Om region har en verdi (zoomToFit ikke returnerer nil) så zoomer kartet ut
           if let region = placeStore.zoomToFit()
           {
             withAnimation(.easeInOut(duration: 1.0))
@@ -151,8 +157,10 @@ struct MapView: View
         Button("GA flyplasser")
         {
           placeStore.addNonAvinor()
+          // Lukker sheet automatisk
           showConfig = false
           
+          // Om region har en verdi (zoomToFit ikke returnerer nil) så zoomer kartet ut
           if let region = placeStore.zoomToFit()
           {
             withAnimation(.easeInOut(duration: 1.0))
@@ -173,7 +181,7 @@ struct MapView: View
         }
       }
       .buttonStyle(.glassProminent)
-      .presentationDetents([.fraction(0.25)])
+      .presentationDetents([.fraction(0.25)]) // setter størrelsen på sheet
     }
     .sheet(isPresented: $showSearch)
     {
