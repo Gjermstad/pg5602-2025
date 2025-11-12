@@ -43,6 +43,7 @@ enum TriviaState
 //
 @MainActor final class TriviaModel: ObservableObject
 {
+  // @Published betyr at endringer vil publisere endringer på variablen og Views som bruker data vil automatisk oppdatere seg
   @Published var questions: [Question] = []
   @Published var type: TriviaType = .multiple
   @Published var level: TriviaLevel = .easy
@@ -53,7 +54,7 @@ enum TriviaState
   @Published var correctAnswers: Int = 0
   @Published var currentIndex: Int = 0
   
-  // Totalt antall spørsmål
+  // Totalt antall spørsmål i arrayet
   var total: Int { questions.count }
   
   //
@@ -71,7 +72,7 @@ enum TriviaState
   {
     state = .loading
     
-    // defer sørger for at denne koden alltid kjøres til slutt
+    // defer sørger for at denne koden alltid kjøres til slutt, selv om annen kode kaster en error
     defer
     {
       if case .loading = state { state = .idle }

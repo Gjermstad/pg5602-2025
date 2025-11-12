@@ -22,8 +22,8 @@ struct StartView: View
       VStack(spacing: 8)
       {
         Image("Cognitio")
-          .font(.largeTitle)
-          .multilineTextAlignment(.center)
+          .resizable()
+          .frame(width: 200, height: 200)
         
         Text("Velg tema og antall spørsmål")
           .font(.subheadline)

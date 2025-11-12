@@ -11,6 +11,7 @@ struct LoadingView: View
 {
   var showBackground: Bool
 
+  // _ gjør at man ikke må skrive parameternavn, og standard er satt til true som viser bakgrunnen
   init(_ showBackground: Bool = true)
   {
     self.showBackground = showBackground
